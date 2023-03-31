@@ -1,10 +1,11 @@
 from flask import Flask, request, flash, redirect, jsonify, url_for
 from flask import render_template as render
 from csv import writer
-
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'jlskdf'
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 id = 0
 rt = ''
@@ -61,8 +62,7 @@ def login():
             data = users[idL]
             if user == data['user'] and passW == data['pass']:
                 rt = data['user']
-                tt = rt
-                return redirect(f'/chat/{rt}')
+                return render('chat.html')
             else:
                 flash('Password or Username Incorrect')
                 return redirect(url_for('login'))
@@ -71,17 +71,18 @@ def login():
             flash("Id does not exists or incorrect id for user")
             return redirect(url_for('login'))
     
-@app.route(f'/chat/{rt}')
-def chat():
-    global rt
-    tt = rt
-    print(rt)
-    return render('chat.html',rt=rt)
 
+@socketio.on('message')
+def handle_message(message):
+    global rt
+    print('Client-side message : ' + message)
+    
+    socketio.send(f'{rt} : {message}')
 @app.route('/donate')
 def donate():
     return render('donate.html.jinja')
 
 
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    socketio.run(app,host="172.20.10.4")

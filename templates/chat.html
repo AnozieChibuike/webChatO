@@ -1,17 +1,44 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebChatIo chat</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Socket.IO Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="nav-bar">
-        <a href="{{ url_for('index') }}">Sign-out</a>
-    </nav>
-    <h3 style="color: aquamarine;">{{ rt }} joined the chat</h3>
-    
+    <div id="messages"></div>
+    <form id="message-form">
+        <input type="text" id="message-input" />
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+        var socket = io.connect('http://172.20.10.4:5000');
+	//var socket = io()
+        function handleMessage(msg) {
+            var messageContainer = document.createElement('div');
+            messageContainer.innerHTML = msg;
+            document.getElementById('messages').appendChild(messageContainer);
+        }
+
+        socket.on('message', handleMessage);
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            var input = document.getElementById('message-input');
+            var message = input.value;
+            socket.send(message);
+            input.value = '';
+        }
+
+        document.getElementById('message-form').addEventListener('submit', handleFormSubmit);
+    </script>
 </body>
 </html>
+
+
+
+
+
+
