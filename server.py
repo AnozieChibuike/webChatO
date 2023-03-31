@@ -85,4 +85,4 @@ def donate():
 
 
 if __name__ == '__main__':
-    socketio.run(app,host="172.20.10.4")
+    socketio.run(app,host="localhost")
