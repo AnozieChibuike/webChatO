@@ -1,0 +1,85 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+*{
+    margin-top: 0%;
+    margin-left: 0%;
+    margin-right: 0%;
+    box-sizing: border-box;
+}
+
+nav.nav-bar{
+    padding-top: 1.5em;
+}
+.nav-bar {
+    font-size: 1.23em;
+    background-color: aqua;
+    margin-top: 0px;
+    padding-bottom: 2em;
+}
+.nav-bar a{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    padding: 0.1em;
+    color: chocolate;
+    font-weight: bolder;
+}
+.p-home{
+    margin-top: 1.5em;
+    margin-bottom: 1.9em;
+}
+.bar{
+padding-top: 30px;
+margin-left: 25px;
+margin-top: 12px;
+margin-bottom: 20px;
+}
+.sign{
+    font-weight: bolder;
+    font-family: cursive;
+    text-decoration: none;
+    background-color: blue;
+    color: rgb(3, 3, 3);
+    margin-left: 5.7em;
+    padding-bottom: 0.6333em;
+    padding-top: 0.6333em;
+    padding-left: 1.3em;
+    padding-right: 1.3em;
+    text-align: center
+}
+input[type=text], input[type=password]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus{
+    background-color: #ddd;
+    outline: none;
+} 
+
+hr{
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+button {
+    background-color: aqua;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover{
+    opacity:1;
+}
+
+.container {
+    padding: 16px;
+}

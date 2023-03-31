@@ -1,0 +1,10 @@
+{% extends "base.html.jinja" %} {% block title %}Home{% endblock title %} 
+{% block nav %}Home{% endblock nav %}
+{%block content %}
+<p class="p-home">
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio quia
+  dignissimos sed itaque, iusto eius sequi minima corporis explicabo voluptatum
+  nam faci lis repellat excepturi vero, quo ducimus cumque doloribus inventore?
+</p>
+<a href='{{ url_for('signup') }}' class='sign'>SignUp</a>
+{% endblock content %}

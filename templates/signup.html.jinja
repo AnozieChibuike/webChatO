@@ -1,0 +1,39 @@
+{% extends "base.html.jinja" %}
+{% block nav %}SignUp{% endblock nav %}
+{% block content %}
+
+<div class="form-signup">
+    <form method="POST" style="border:1px solid #ccc;margin-top: 60px">
+        <div class="'container">
+            <h1 style="text-align: center;">SignUp</h1>
+            <p>Please fill in this form to create an account</p>
+            <hr>
+            <label for='username'><b>UserName</b></label>
+            <br>
+            <input type="text" name="username" 
+                placeholder="Enter Username" 
+                value="" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" name="pass"
+                placeholder="Password 6-20 characters" required>
+            <label for="psw-repeat"><b>Repeat password</b></label>
+            <input type="password" name="pass-repeat"
+                placeholder="Repeat password" required>
+            <p>Our developer will love your <a href="{{ url_for('donate')}}" style="color:dodgerblue">donations</a>.</p>
+            <div class="clearfix">
+                <button type="submit" class="signupbtn">Signup</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+var messages = {{ messages | safe }};
+for (var i=0; i < messages.length; i++) {
+    alert(messages[i])
+}
+</script>
+{% endif %}
+{% endwith %}
+{% endblock content %}
