@@ -15,8 +15,8 @@
     </form>
 
     <script>
-        //var socket = io.connect('http://');
-	var socket = io()
+        var socket = io.connect('https://003a-102-88-62-87.eu.ngrok.io');
+	//var socket = io()
         function handleMessage(msg) {
             var messageContainer = document.createElement('div');
             messageContainer.innerHTML = msg;
