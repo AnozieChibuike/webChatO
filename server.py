@@ -62,7 +62,7 @@ def login():
             data = users[idL]
             if user == data['user'] and passW == data['pass']:
                 rt = data['user']
-                return render('chat.html')
+                return render('chat.html',rt=rt)
             else:
                 flash('Password or Username Incorrect')
                 return redirect(url_for('login'))
@@ -74,10 +74,9 @@ def login():
 
 @socketio.on('message')
 def handle_message(message):
-    global rt
     print('Client-side message : ' + message)
     
-    socketio.send(f'{rt} : {message}')
+    socketio.send(message)
 @app.route('/donate')
 def donate():
     return render('donate.html.jinja')
@@ -85,4 +84,4 @@ def donate():
 
 
 if __name__ == '__main__':
-    socketio.run(app,host="172.20.10.4")
+    socketio.run(app,host="127.0.0.1")

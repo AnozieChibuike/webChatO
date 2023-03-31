@@ -9,13 +9,14 @@
 <body>
     <div id="messages"></div>
     <form id="message-form">
+	<input type="text" readonly value="{{ rt }}" id='useR'/>
         <input type="text" id="message-input" />
         <button type="submit">Send</button>
     </form>
 
     <script>
-        var socket = io.connect('http://172.20.10.4:5000');
-	//var socket = io()
+        //var socket = io.connect('http://');
+	var socket = io()
         function handleMessage(msg) {
             var messageContainer = document.createElement('div');
             messageContainer.innerHTML = msg;
@@ -27,7 +28,9 @@
         function handleFormSubmit(event) {
             event.preventDefault();
             var input = document.getElementById('message-input');
-            var message = input.value;
+	    var useR = document.getElementById('useR').value;
+            var out = input.value;
+	    var message = `${useR} : ${out}`
             socket.send(message);
             input.value = '';
         }
