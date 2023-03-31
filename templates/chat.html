@@ -14,8 +14,8 @@
     </form>
 
     <script>
-        var socket = io.connect('http://172.20.10.4:5000');
-	//var socket = io()
+        //var socket = io.connect('http://host:5000');
+	    var socket = io()
         function handleMessage(msg) {
             var messageContainer = document.createElement('div');
             messageContainer.innerHTML = msg;
