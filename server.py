@@ -27,12 +27,6 @@ def signup():
             if not any(user in d.values() for d in users):
                 id += 1
                 users.append({'user': user, 'pass': passW, 'id': id})
-                #with open('data.csv','w',encoding='utf8',newline='') as c:
-                    #write = writer(c)
-                    #header = ['ID','USERNAME','PASSWORD']
-                    #write.writerow(header)
-                    #for i in users: 
-                        #write.writerow([i['id'],i['user'],i['pass']])
                 return render('success.html', id=id, user=user, passW=passW)
             elif any(user in d.values() for d in users):
                 flash('User exists try another username')
