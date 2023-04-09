@@ -3,24 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Socket.IO Example</title>
+    <title>WEBCHAT IO - CHAT</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="messages"></div>
+    <div id="messages">
+    {% for f in show %}
+    {% if f.endswith('joined the chat') %}
+    <div style='color:green;'>{{ f }}</div>
+    {% else %}
+    	<div>{{ f }}</div>
+    {% endif %}
+    {% endfor %}</div>
     <form id="message-form">
-	<input type="text" readonly value="{{ rt }}" id='useR'/>
-        <input type="text" id="message-input" />
+	<input type="text" hidden value="{{ rt }}" id='useR'/>
+        <input type="text" id="message-input" required placeholder='Input message'/>
         <button type="submit">Send</button>
-    </form>
+    </form>                   
 
     <script>
-        var socket = io.connect('https://003a-102-88-62-87.eu.ngrok.io');
-	//var socket = io()
+        //var socket = io.connect('192.168.56.1:5000');
+	    var socket = io()
         function handleMessage(msg) {
-            var messageContainer = document.createElement('div');
+	    var messageContainer = document.createElement('div');
             messageContainer.innerHTML = msg;
-            document.getElementById('messages').appendChild(messageContainer);
+	    document.getElementById('messages').appendChild(messageContainer);
+            
         }
 
         socket.on('message', handleMessage);
