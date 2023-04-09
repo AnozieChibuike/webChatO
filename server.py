@@ -1,6 +1,5 @@
-from flask import Flask, request, flash, redirect, jsonify, url_for
+from flask import Flask, request, flash, redirect, url_for
 from flask import render_template as render
-from csv import writer
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
