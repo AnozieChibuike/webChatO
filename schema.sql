@@ -2,6 +2,6 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL,
+    username varchar unique,
     pass TEXT NOT NULL
 );

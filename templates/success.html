@@ -7,13 +7,7 @@
     <title>Success</title>
 </head>
 <body>
-    <h1 style="color:greenyellow">Account Created successfully.</h1>
-    <p>Username: <b>{{ user }}</b><br>Password: <b>{{ passW }}</b><br>Unique id: <b>{{ id }}</b><br><br>Please do not forget it as you need it to login</p>
+    <h1 style="color:greenyellow">Account Created successfully!</h1>
     <a href="{{ url_for('login')}}">Login here</a>
-    <p>{% for user in users %}
-        {{ user }}
-    {% endfor %}
-    </p>
-    
 </body>
 </html>

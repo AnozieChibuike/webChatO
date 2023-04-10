@@ -12,3 +12,15 @@ cur.execute("INSERT INTO users (username,pass) VALUES (?,?)",
 
 connectDb.commit()
 connectDb.close()
+
+msgDb = sqlite3.connect('messages.db')
+
+with open('msg.sql') as t:
+    msgDb.executescript(t.read())
+
+cr = msgDb.cursor()
+
+cr.execute("INSERT INTO msg (messages) VALUES (?)",('admin : HELLO',))
+
+msgDb.commit()
+msgDb.close()
