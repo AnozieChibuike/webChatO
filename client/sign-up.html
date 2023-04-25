@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebChatIo || Sign Up</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <a href="index.html">
+        <h2 class="logo">WebChatIo</h2>
+      </a>
+      <form class="form">
+        <div class="title">
+          <h2>sign up</h2>
+        </div>
+        <div class="input-field" data-id="email">
+          <label for="email">
+            <input type="text" id="email" placeholder="enter email" />
+            <span>email</span>
+          </label>
+        </div>
+        <div class="input-field" data-id="username">
+          <label for="username">
+            <input type="text" id="username" placeholder="username" />
+            <span>username</span>
+          </label>
+        </div>
+        <div class="input-field" data-id="password">
+          <label for="password">
+            <input type="password" id="password" placeholder="password" />
+            <span>password</span>
+          </label>
+        </div>
+        <div class="input-field" data-id="confirmPassword">
+          <label for="confirmPassword">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="confirm password"
+            />
+            <span>confirm password</span>
+          </label>
+        </div>
+        <button type="submit">sign up</button>
+        <p class="cta">
+          Already have an account?
+          <a href="login.html"> Login</a>
+        </p>
+        <p class="message"></p>
+      </form>
+    </main>
+    <script src="./utils/formValidation.js" type="module"></script>
+  </body>
+</html>
