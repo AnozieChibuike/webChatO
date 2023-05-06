@@ -1,5 +1,6 @@
 import { get } from './getElement.js'
 import setMessage from './setMessage.js'
+import showLoading from './showLoading.js'
 
 // select elements
 const form = get('.form')
@@ -29,7 +30,8 @@ const validateInputs = () => {
     setMessage('password must be greater than or equals to 6 characters')
     password.focus()
   } else {
-    setMessage('login successful')
+    setMessage('login...')
+    showLoading()
   }
 }
 form.addEventListener('submit', (e) => {

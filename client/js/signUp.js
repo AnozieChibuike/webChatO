@@ -1,5 +1,6 @@
 import { get } from './getElement.js'
 import setMessage from './setMessage.js'
+import showLoading from './showLoading.js'
 
 // select elements
 const form = get('.form')
@@ -45,7 +46,8 @@ const validateInputs = () => {
     setMessage('passwords do not match')
     confirmPassword.focus()
   } else {
-    setMessage('sign up successful')
+    setMessage('signing up...')
+    showLoading()
   }
 }
 

@@ -241,3 +241,33 @@ input:not(:placeholder-shown) + span {
   font-weight: bold;
   color: var(--purple);
 }
+/* spinner */
+.loading {
+  display: none;
+}
+.show-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+.spinner {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  border: 5px solid #f1f1f1;
+  border-left-color: var(--purple);
+  animation: spin 0.7s infinite linear;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

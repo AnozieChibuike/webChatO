@@ -1,5 +1,6 @@
 import { get } from './getElement.js'
 import setMessage from './setMessage.js'
+import showLoading from './showLoading.js'
 
 // select elements
 const form = get('.form')
@@ -16,7 +17,8 @@ const validateInputs = () => {
     setMessage('invalid email')
     email.focus()
   } else {
-    setMessage('please check your email')
+    setMessage('processing...')
+    showLoading()
   }
 }
 
