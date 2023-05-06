@@ -1,4 +1,4 @@
-import { get, getAll } from './utils/getElement.js'
+import { get, getAll } from './js/getElement.js'
 
 // Show / hide navlinks
 const navBtn = get('.nav-btn')

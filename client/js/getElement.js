@@ -4,12 +4,15 @@ export const get = (selection) => {
   if (element) {
     return element
   }
+  throw new Error(`your selection "${selection}" does not exist"`)
 }
 
 export const getAll = (selection) => {
   const elements = [...document.querySelectorAll(selection)]
 
-  if (elements) {
-    return elements
+  if (!elements[0]) {
+    throw new Error(`your selections "${selection}" do not exist"`)
+  } else {
+    return Element
   }
 }
