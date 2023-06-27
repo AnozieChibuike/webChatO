@@ -1,6 +1,8 @@
 from app import app
 from flask import request, flash, session, redirect
 from flask import render_template as rd
+from app.model import User, Msg
+
 
 @app.route('/')
 @app.route('/home')
