@@ -9,7 +9,7 @@ from app.model import User, Msg
 def home():
     return rd("index.html.jinja")
 
-@app.route('/signup',methods=["POST","GET"]
+@app.route('/signup',methods=["POST","GET"])
 def signup():
     if request.method == "POST":
         username = request.form['username']
