@@ -7,7 +7,7 @@ from flask import render_template as rd
 def home():
     return rd("index.html.jinja")
 
-@app.route('/signup',methods=["POST","GET"]
+@app.route('/signup',methods=["POST","GET"])
 def signup():
     if request.method == "POST":
         username = request.form['username']
