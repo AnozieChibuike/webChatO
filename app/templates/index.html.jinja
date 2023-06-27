@@ -1,6 +1,43 @@
 {% extends 'base.html.jinja' %}
 
 {% block content %}
+     <style>
+    /* Custom CSS styles for the home page */
+    .home-container {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .home-container h1 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .home-container p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .signup-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #FF5A5F;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+    .signup-btn:hover {
+        background-color: #E5484D;
+    }
+</style>
+
+
+
     <h1>Welcome to the Webchat App!</h1>
     <p>Thank you for choosing our platform to connect with others.</p>
     <p>If you haven't signed up yet, click the button below to create an account:</p>
