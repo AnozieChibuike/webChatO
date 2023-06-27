@@ -10,3 +10,6 @@ def home():
 def signup():
     return rd("signup.html.jinja")
 
+@app.route('/login')
+def login():
+    return rd("login.html.jinja")
