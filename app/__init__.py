@@ -9,8 +9,8 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
-login = LoginManager(app)
-login.login_view = 'login'
+# login = LoginManager(app)
+# login.login_view = 'login'
 socketio = SocketIO(app, cors_allowed_origin="*")
 
 from app import routes,model
