@@ -128,6 +128,7 @@ h1 {
         </div>
 
         <div class="chat-input">
+          
             <input type="text" id="message-input" placeholder="Type your message...">
             <button type="button" id="send-btn">Send</button>
         </div>
@@ -138,27 +139,33 @@ h1 {
 
     <script>
         //var socket = io.connect('192.168.56.1:5000');
-	    var socket = io()
-        function handleMessage(msg) {
-	    var messageContainer = document.createElement('div');
-        messageContainer.innerHTML = msg;
-	    document.getElementById('messages').appendChild(messageContainer);
-            
-        }
+      
+      var socket = io();
 
-        socket.on('message', handleMessage);
+    function handleMessage(msg) {
+    var messageContainer = document.createElement('div');
+    messageContainer.innerHTML = msg;
+    messageContainer.className = 'message';
+    messageContainer.classList.add('text');
+    document.getElementById('messages').appendChild(messageContainer);
+}
 
+socket.on('message', handleMessage);
+
+      
+      
+      
         function handleFormSubmit(event) {
             event.preventDefault();
             var input = document.getElementById('message-input');
-	        var useR = document.getElementById('useR').value;
+	        var useR = {{ current_user.username }}
             var out = input.value;
 	        var message = `${useR} : ${out}`
             socket.send(message);
             input.value = '';
         }
 
-        document.getElementById('message-form').addEventListener('submit', handleFormSubmit);
+        document.getElementById('send-btn').addEventListener('click', handleFormSubmit);
     </script>
 </body>
 </html>
