@@ -26,10 +26,11 @@ def signup():
             return redirect('/signup')
     return rd("signup.html.jinja")
 
-@app.route('/login')
+@app.route('/login',methods=['POST','GET'])
 def login():
     if request.method == 'POST':
-        email = 
-        password =
-        remember = 
+        email = request.form.get('email')
+        password = request.form.get('password')
+        remember = bool(request.form.get('remember-me'))
+        return remember
     return rd("login.html.jinja")
