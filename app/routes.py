@@ -1,4 +1,4 @@
-from app import app, db
+from app import app, db, socket
 from flask import request, flash, session, redirect, url_for
 from flask import render_template as rd
 from app.model import User, Msg
@@ -59,7 +59,14 @@ def login():
         
     return rd("login.html.jinja")
     
+@socket.on('message')
+def message(message):
+    socket.send(message)
+
+
+
 @app.route('/chatbox',methods=['POST','GET'])
 @login_required
 def chatbox():
+    
     return rd("chat.html")
