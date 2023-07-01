@@ -38,12 +38,13 @@
         }
 
 			.error-message {
-    background-color: #FF5A5F;
+    background-color: #FF4444;
     color: #fff;
     padding: 20px;
     text-align: center;
     font-size: 18px;
 }
+
 
     </style>
 </head>
@@ -56,7 +57,7 @@
             <li><a href="/donate">Donate</a></li>
         </ul>
     </div>
-
+<p></p>
 {% for error in get_flashed_messages() %}
 {% if error %}
 <div class="error-message">
