@@ -109,13 +109,5 @@
         </form>
         <p>Already have an account? <a href="/login">Log in here</a></p>
     </div>
-
-{% for error in get_flashed_messages() %}
-{% if error %}
-<div class="error-popup">
-            <p>{{ error }}</p>
-        </div>
-{% endif %}
-{% endfor %}
 {% endblock %}
 
