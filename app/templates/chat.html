@@ -6,6 +6,8 @@
   <style>
       /* Custom CSS styles for the chat interface */
 
+/* Custom CSS styles for the mobile chat interface */
+
 #chat-container {
     max-width: 600px;
     margin: 0 auto;
@@ -51,9 +53,8 @@
 }
 
 .logout-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    display: block;
+    margin-top: 20px;
     padding: 10px 20px;
     background-color: #FF5A5F;
     color: #fff;
@@ -61,11 +62,24 @@
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s;
+    text-align: center;
 }
 
 .logout-btn:hover {
     background-color: #E5484D;
 }
+
+@media (max-width: 480px) {
+    /* Styles for mobile devices */
+    .chat-input {
+        flex-direction: column;
+    }
+
+    .chat-input input[type="text"] {
+        margin-top: 10px;
+    }
+}
+
 </style>
 </head>
 <body>
