@@ -36,6 +36,15 @@
         .content {
             margin: 20px;
         }
+
+			.error-message {
+    background-color: #FF5A5F;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
     </style>
 </head>
 <body>
@@ -47,6 +56,14 @@
             <li><a href="/donate">Donate</a></li>
         </ul>
     </div>
+
+{% for error in get_flashed_messages() %}
+{% if error %}
+<div class="error-message">
+            <p>{{ error }}</p>
+        </div>
+{% endif %}
+{% endfor %}
     
     <div class="content">
         {% block content %}
