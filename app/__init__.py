@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 login = LoginManager(app)
 login.login_view = 'login'
-socketio = SocketIO(app, cors_allowed_origin="*")
+socket = SocketIO(app, cors_allowed_origin="*")
 
 from app import routes,model
 
