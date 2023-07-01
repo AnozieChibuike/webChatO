@@ -54,4 +54,4 @@ def login():
 @app.route('/chatbox',methods=['POST','GET'])
 @login_required
 def chatbox():
-    return "Welcome to chat"
+    return rd("chat.html")
