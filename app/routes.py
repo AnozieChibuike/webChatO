@@ -29,6 +29,8 @@ def signup():
 
 @app.route('/login',methods=['POST','GET'])
 def login():
+    if current_user.is_authenticated:
+        return redirect('/chatbox')
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -39,3 +41,8 @@ def login():
         
         
     return rd("login.html.jinja")
+    
+@app.route('/chatbox',methods=['POST','GET'])
+@login_required
+def chatbox():
+    return "Welcome to chat"
