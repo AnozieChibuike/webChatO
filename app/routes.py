@@ -2,7 +2,8 @@ from app import app, db
 from flask import request, flash, session, redirect
 from flask import render_template as rd
 from app.model import User, Msg
-from flask_login import current_user
+from flask_login import current_user, login_user, logout_user, login_required
+from werkzeug.urls import url_parse
 
 @app.route('/')
 @app.route('/home')
