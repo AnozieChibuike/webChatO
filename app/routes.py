@@ -2,7 +2,7 @@ from app import app, db
 from flask import request, flash, session, redirect
 from flask import render_template as rd
 from app.model import User, Msg
-
+from flask_login import current_user
 
 @app.route('/')
 @app.route('/home')
@@ -32,5 +32,9 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         remember = bool(request.form.get('remember-me'))
-        return str(remember)
+        
+        
+        
+        
+        
     return rd("login.html.jinja")
