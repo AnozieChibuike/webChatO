@@ -1,5 +1,5 @@
 from app import app, db
-from flask import request, flash, session, redirect
+from flask import request, flash, session, redirect, url_for
 from flask import render_template as rd
 from app.model import User, Msg
 from flask_login import current_user, login_user, logout_user, login_required
@@ -35,7 +35,16 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         remember = bool(request.form.get('remember-me'))
-        
+        user = User.query.filter_by(email=email).first()
+        if user is None or not user.check_password(password):
+            flash('Invalid login details')
+            return redirect('/login')
+        login_user(user,remember=remember)
+        next_page = request.args.get('next')
+        session['welcome'] = f'{current_user.username} joined the chat'
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('chatbox')
+        return redirect(next_page)
         
         
         
