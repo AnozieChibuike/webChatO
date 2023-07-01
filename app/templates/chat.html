@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
   <style>
 /* Custom CSS styles for the techno-themed chat interface */
+/* Custom CSS styles for the techno-themed chat interface */
 
 body {
     background-color: #181818;
@@ -63,7 +64,6 @@ h1 {
 }
 
 .chat-input #send-btn {
-    margin-left: 10px;
     padding: 10px 20px;
     background-color: #00baff;
     color: #fff;
@@ -106,18 +106,20 @@ h1 {
     }
 
     .chat-input {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         margin-top: 10px;
     }
 
     .chat-input input[type="text"] {
-        width: 100%;
-        margin-top: 10px;
+        flex: 1;
+        margin-right: 10px;
     }
 
     .logout-btn {
         margin-top: 0;
+        margin-bottom: 10px;
     }
 }
 
