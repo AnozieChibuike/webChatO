@@ -32,5 +32,5 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         remember = bool(request.form.get('remember-me'))
-        return remember
+        return str(remember)
     return rd("login.html.jinja")
