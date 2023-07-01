@@ -8,6 +8,8 @@
 /* Custom CSS styles for the techno-themed chat interface */
 /* Custom CSS styles for the techno-themed chat interface */
 
+/* Custom CSS styles for the chat interface */
+
 body {
     background-color: #181818;
     margin: 0;
@@ -19,6 +21,9 @@ body {
     padding: 20px;
     background-color: #181818;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 h1 {
@@ -28,9 +33,10 @@ h1 {
 }
 
 .messages {
-    margin-bottom: 20px;
+    flex: 1;
     overflow-y: auto;
-    max-height: 300px;
+    max-height: calc(100% - 100px);
+    margin-bottom: 20px;
 }
 
 .message {
@@ -49,7 +55,6 @@ h1 {
 .chat-input {
     display: flex;
     align-items: center;
-    margin-top: 20px;
 }
 
 .chat-input input[type="text"] {
@@ -74,8 +79,9 @@ h1 {
 }
 
 .logout-btn {
-    display: block;
-    margin-top: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     padding: 10px 20px;
     background-color: #00baff;
     color: #fff;
@@ -83,51 +89,12 @@ h1 {
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s;
-    text-align: center;
 }
 
 .logout-btn:hover {
     background-color: #0097d1;
 }
 
-@media (max-width: 1000px) {
-    /* Styles for mobile devices */
-    #chat-container {
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    .messages {
-        max-height: 200px;
-    }
-
-    .chat-input {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: auto;
-        margin-bottom: 10px;
-    }
-
-    .chat-input input[type="text"] {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .chat-input #send-btn {
-        margin-left: 0;
-    }
-
-    .logout-btn {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        margin-top: 0;
-    }
-}
   </style>
 </head>
 <body>
