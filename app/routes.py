@@ -28,4 +28,8 @@ def signup():
 
 @app.route('/login')
 def login():
+    if request.method == 'POST':
+        email = 
+        password =
+        remember = 
     return rd("login.html.jinja")
