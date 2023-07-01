@@ -1,111 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEBCHAT IO - CHAT</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
   <style>
 /* Custom CSS styles for the techno-themed chat interface */
-/* Custom CSS styles for the techno-themed chat interface */
-/* Custom CSS styles for the techno-themed chat interface */
 
-/* Custom CSS styles for the chat interface */
-/* Custom CSS styles for the chat interface */
-
-body {
-    background-color: #181818;
-    margin: 0;
-}
-
-#chat-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #181818;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 40px); /* Subtracting 40px for padding */
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #00baff;
-}
-
-.messages {
-    flex: 1;
-    overflow-y: auto;
-    margin-bottom: 20px;
-}
-
-.message {
-    margin-bottom: 10px;
-}
-
-.username {
-    font-weight: bold;
-    color: #00baff;
-}
-
-.text {
-    margin-left: 5px;
-}
-
-.chat-input {
-    display: flex;
-    align-items: center;
-}
-
-.chat-input input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 4px;
-    border: none;
-}
-
-.chat-input #send-btn {
-    margin-left: 10px;
-    padding: 10px 20px;
-    background-color: #00baff;
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.logout-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #00baff;
-    color: #fff;
-    font-size: 16px;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.logout-btn:hover {
-    background-color: #0097d1;
-}
-
-@media (max-width: 414px) {
-    /* Styles for iPhone 8 Plus screen */
-    #chat-container {
-        padding: 10px;
-    }
     
-    .messages {
-        max-height: calc(100vh - 280px); /* Adjust the value based on your content */
-    }
-}
-
   </style>
 </head>
 <body>
