@@ -8,6 +8,7 @@
   <style>
 /* Custom CSS styles for the techno-themed chat interface */
 /* Custom CSS styles for the techno-themed chat interface */
+/* Custom CSS styles for the techno-themed chat interface */
 
 body {
     background-color: #181818;
@@ -74,8 +75,9 @@ h1 {
 }
 
 .logout-btn {
-    display: block;
-    margin-top: 20px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
     padding: 10px 20px;
     background-color: #00baff;
     color: #fff;
@@ -106,22 +108,25 @@ h1 {
     }
 
     .chat-input {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         margin-top: 10px;
     }
 
     .chat-input input[type="text"] {
-        flex: 1;
-        margin-right: 10px;
+        width: 100%;
+        margin-top: 10px;
     }
 
     .logout-btn {
-        margin-top: 0;
+        position: static;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 }
+
+
+
 
   </style>
 </head>
