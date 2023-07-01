@@ -3,18 +3,90 @@
 <head>
     <title>WEBCHAT IO - CHAT</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    /* Custom CSS styles for the chat interface */
+
+#chat-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.username {
+    font-weight: bold;
+    color: #FF5A5F;
+}
+
+.text {
+    margin-left: 5px;
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.chat-input input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.chat-input #send-btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #FF5A5F;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #FF5A5F;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #E5484D;
+}
+
 </head>
 <body>
-    <h1><a href="{{ url_for('index')}}">logout</a></h1>
-    <div id="messages">
-    {% for f in show %}
-    <div>{{ f['messages'] }}</div>
-    {% endfor %}</div>
-    <form id="message-form">
-	<input type="text" hidden value="{{ rt }}" id='useR'/>
-        <input type="text" id="message-input" required placeholder='Input message'/>
-        <button type="submit">Send</button>
-    </form>                   
+    <h1>Welcome to the Chat Room!</h1>
+    <div id="chat-container">
+        <div class="message">
+            <span class="username">John:</span>
+            <span class="text">Hello, how are you?</span>
+        </div>
+        <div class="message">
+            <span class="username">Sarah:</span>
+            <span class="text">I'm good, thanks for asking!</span>
+        </div>
+        <!-- Add more chat messages dynamically -->
+
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button type="button" id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <a href="/logout" class="logout-btn">Logout</a>                   
 
     <script>
         //var socket = io.connect('192.168.56.1:5000');
