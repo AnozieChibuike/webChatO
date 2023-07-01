@@ -9,6 +9,7 @@
 /* Custom CSS styles for the techno-themed chat interface */
 
 /* Custom CSS styles for the techno-themed chat interface */
+/* Custom CSS styles for the techno-themed chat interface */
 
 body {
     background-color: #181818;
@@ -93,23 +94,19 @@ h1 {
     background-color: #0097d1;
 }
 
-@media (max-width: 1024px) {
-    /* Styles for iPad and below */
-    .chat-input {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 10px;
-    }
+.chat-input-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 20px;
+}
 
-    .chat-input input[type="text"] {
-        width: 100%;
-        margin-top: 10px;
-    }
+.chat-input-mobile input[type="text"] {
+    margin-bottom: 10px;
+}
 
-    .chat-input #send-btn {
-        margin-left: 0;
-        margin-top: 10px;
-    }
+.chat-input-mobile #send-btn {
+    margin-left: auto;
 }
 
   </style>
