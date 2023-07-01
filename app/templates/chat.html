@@ -5,19 +5,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
   <style>
  /* Custom CSS styles for the techno-themed chat interface */
+/* Custom CSS styles for the techno-themed chat interface */
+
+body {
+    background-color: #181818;
+    margin: 0;
+}
 
 #chat-container {
-    max-width: 600px;
-    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     padding: 20px;
     background-color: #181818;
     color: #fff;
 }
 
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00baff;
+}
+
 .messages {
+    flex: 1;
     margin-bottom: 20px;
     overflow-y: auto;
-    max-height: 300px;
 }
 
 .message {
@@ -36,6 +51,7 @@
 .chat-input {
     display: flex;
     align-items: center;
+    margin-top: 20px;
 }
 
 .chat-input input[type="text"] {
@@ -60,8 +76,9 @@
 }
 
 .logout-btn {
-    display: block;
-    margin-top: 20px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
     padding: 10px 20px;
     background-color: #00baff;
     color: #fff;
@@ -69,30 +86,30 @@
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s;
-    text-align: center;
 }
 
 .logout-btn:hover {
     background-color: #0097d1;
 }
 
-
-
        /* Custom CSS styles for the chat interface */
   </style>
 </head>
 <body>
-    <h1>Welcome to the Chat Room!</h1>
+  
+  <h1>Welcome to the Techno Chat Room!</h1>
     <div id="chat-container">
-        <div class="message">
-            <span class="username">John:</span>
-            <span class="text">Hello, how are you?</span>
+        <div class="messages">
+            <div class="message">
+                <span class="username">John:</span>
+                <span class="text">Hello, how are you?</span>
+            </div>
+            <div class="message">
+                <span class="username">Sarah:</span>
+                <span class="text">I'm good, thanks for asking!</span>
+            </div>
+            <!-- Add more chat messages dynamically -->
         </div>
-        <div class="message">
-            <span class="username">Sarah:</span>
-            <span class="text">I'm good, thanks for asking!</span>
-        </div>
-        <!-- Add more chat messages dynamically -->
 
         <div class="chat-input">
             <input type="text" id="message-input" placeholder="Type your message...">
@@ -100,8 +117,11 @@
         </div>
     </div>
 
-    <a href="/logout" class="logout-btn">Logout</a>                   
-
+    <a href="/logout" class="logout-btn">Logout</a>
+  
+  
+  
+    
     <script>
         //var socket = io.connect('192.168.56.1:5000');
 	    var socket = io()
