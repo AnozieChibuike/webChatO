@@ -27,3 +27,8 @@ class Msg(db.Model):
 
     def __repr__(self):
         return '<Msg {}>'.format(self.body)
+
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
