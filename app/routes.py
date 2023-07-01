@@ -20,10 +20,10 @@ def signup():
             user.set_password(password)
             db.session.add(user)
             db.session.commit()
-            return redirect('/login'), 201
+            return redirect('/login')
         else:
             flash('User exists!')
-            return redirect('/signup'), 409
+            return redirect('/signup')
     return rd("signup.html.jinja")
 
 @app.route('/login')
