@@ -5,6 +5,14 @@ from app.model import User, Msg
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
+
+
+
 @app.route('/')
 @app.route('/home')
 def home():
