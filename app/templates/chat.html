@@ -8,11 +8,11 @@
   <style>
 /* Custom CSS styles for the techno-themed chat interface */
 /* Custom CSS styles for the chat interface */
+ /* Custom CSS styles for the chat interface */
 
 body {
     background-color: #181818;
     margin: 0;
-    overflow: hidden;
 }
 
 #chat-container {
@@ -23,7 +23,7 @@ body {
     color: #fff;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 40px); /* Subtracting 40px for padding */
 }
 
 h1 {
@@ -54,12 +54,6 @@ h1 {
 .chat-input {
     display: flex;
     align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    background-color: #333;
 }
 
 .chat-input input[type="text"] {
@@ -100,13 +94,17 @@ h1 {
     background-color: #0097d1;
 }
 
-@media (max-width: 600px) {
-    .chat-input {
-        padding: 20px;
+@media (max-width: 414px) {
+    /* Styles for iPhone 8 Plus screen */
+    #chat-container {
+        padding: 10px;
+    }
+    
+    .messages {
+        max-height: calc(100vh - 280px); /* Adjust the value based on your content */
     }
 }
 
-    
   </style>
 </head>
 <body>
