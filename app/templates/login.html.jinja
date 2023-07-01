@@ -8,6 +8,17 @@
         text-align: center;
         margin-top: 100px;
     }
+.remember-me {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #666;
+    }
+
+    .remember-me input {
+        margin-right: 10px;
+    }
 
     .login-container h1 {
         font-size: 36px;
@@ -77,7 +88,10 @@
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-            
+            <div class="remember-me">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label for="remember-me">Remember Me</label>
+            </div>
             <button type="submit" class="login-btn">Log In</button>
         </form>
         <p>Don't have an account yet? <a href="/signup">Sign up here</a></p>
