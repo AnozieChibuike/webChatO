@@ -9,6 +9,7 @@
 /* Custom CSS styles for the techno-themed chat interface */
 
 /* Custom CSS styles for the chat interface */
+/* Custom CSS styles for the chat interface */
 
 body {
     background-color: #181818;
@@ -23,7 +24,7 @@ body {
     color: #fff;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 40px); /* Subtracting 40px for padding */
 }
 
 h1 {
@@ -35,7 +36,6 @@ h1 {
 .messages {
     flex: 1;
     overflow-y: auto;
-    max-height: calc(100% - 100px);
     margin-bottom: 20px;
 }
 
@@ -93,6 +93,17 @@ h1 {
 
 .logout-btn:hover {
     background-color: #0097d1;
+}
+
+@media (max-width: 414px) {
+    /* Styles for iPhone 8 Plus screen */
+    #chat-container {
+        padding: 10px;
+    }
+    
+    .messages {
+        max-height: calc(100vh - 280px); /* Adjust the value based on your content */
+    }
 }
 
   </style>
