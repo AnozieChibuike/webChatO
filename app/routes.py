@@ -15,7 +15,7 @@ def signup():
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
-        if User.query.filter_by(email=email) is None and User.query.filter_by(username=username) is None:
+        if User.query.filter_by(email=email).first() is None and User.query.filter_by(username=username).first() is None:
             user = User(username=username,email=email)
             user.set_password(password)
             db.session.add(user)
