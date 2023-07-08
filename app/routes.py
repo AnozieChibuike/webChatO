@@ -58,7 +58,9 @@ def login():
         
         
     return rd("login.html.jinja")
-    
+
+
+# Handling socket frontend
 @socket.on('message')
 def message(message):
     socket.send(message)
@@ -68,5 +70,4 @@ def message(message):
 @app.route('/chatbox',methods=['POST','GET'])
 @login_required
 def chatbox():
-    
     return rd("chat.html")
