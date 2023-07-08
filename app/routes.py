@@ -12,20 +12,20 @@ def logout():
     return redirect('/')
 
 
-
 @app.route('/')
 @app.route('/home')
 def home():
     return rd("index.html.jinja")
 
-@app.route('/signup',methods=["POST","GET"])
+
+@app.route('/signup', methods=["POST", "GET"])
 def signup():
     if request.method == "POST":
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
         if User.query.filter_by(email=email).first() is None and User.query.filter_by(username=username).first() is None:
-            user = User(username=username,email=email)
+            user = User(username=username, email=email)
             user.set_password(password)
             db.session.add(user)
             db.session.commit()
@@ -35,7 +35,8 @@ def signup():
             return redirect('/signup')
     return rd("signup.html.jinja")
 
-@app.route('/login',methods=['POST','GET'])
+
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
         return redirect('/chatbox')
@@ -47,29 +48,29 @@ def login():
         if user is None or not user.check_password(password):
             flash('Invalid login details')
             return redirect('/login')
-        login_user(user,remember=remember)
+        login_user(user, remember=remember)
         next_page = request.args.get('next')
         session['welcome'] = f'{current_user.username} joined the chat'
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('chatbox')
+           next_page = url_for('chatbox')
         return redirect(next_page)
-        
-        
-        
-        
     return rd("login.html.jinja")
 
 
 # Handling socket frontend
 @socket.on('message')
 def message(message):
-    socket.emit('mes',{'user':current_user.username,'msg':message})
+    u = current_user
+    p = Msg(body=message,author=u)
+    db.session.add(p)
+    db.session.commit()
+    # posts = Msg.query.all()
+    # for i in posts:
+    #    socket.emit('mes', {'user': i.author.username, 'msg': i.body})
 
 
-
-@app.route('/chatbox',methods=['POST','GET'])
+@app.route('/chatbox', methods=['POST', 'GET'])
 @login_required
 def chatbox():
-    # session['chatter'] = current_user.username
-    # print(session)
+    
     return rd("chat.html")
