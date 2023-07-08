@@ -115,16 +115,16 @@
     </style>
   </head>
   <body>
-    <h1>Welcome to the Chat Room!</h1>
+    <h1>Agbero Chat Room!</h1>
     <div id="chat-container">
       <div class="messages">
         <div class="message">
-          <span class="username">John:</span>
-          <span class="text">Hello, how are you?</span>
+          <span class="username">admin:</span>
+          <span class="text">Please be Nice!</span>
         </div>
         <div class="message">
-          <span class="username">Sarah:</span>
-          <span class="text">I'm good, thanks for asking!</span>
+          <span class="username">Sarah220:</span>
+          <span class="text">Welcome guys!</span>
         </div>
         <!-- Add more chat messages dynamically -->
       </div>
@@ -154,29 +154,20 @@
 
         var usernameSpan = document.createElement("span");
         usernameSpan.classList.add("username");
-        usernameSpan.textContent = '{{ current_user.username }}:';
+        usernameSpan.textContent = `${msg.user}:`;
 
         var textSpan = document.createElement("span");
         textSpan.classList.add("text");
-        textSpan.textContent = msg;
+        textSpan.textContent = msg.msg;
 
         messageDiv.appendChild(usernameSpan);
         messageDiv.appendChild(textSpan);
 
         messagesDiv.appendChild(messageDiv);
-
-
-
-
-        // var messageContainer = document.createElement('div');
-        // messageContainer.innerHTML = msg;
-        // messageContainer.className = 'message';
-        // messageContainer.classList.add('text');
-        // document.getElementById('messages').appendChild(messageContainer);
         console.log(msg);
       }
 
-      socket.on("message", handleMessage);
+      socket.on("mes", handleMessage);
 
       function handleFormSubmit(event) {
         event.preventDefault();

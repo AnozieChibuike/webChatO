@@ -63,11 +63,13 @@ def login():
 # Handling socket frontend
 @socket.on('message')
 def message(message):
-    socket.send(message)
+    socket.emit('mes',{'user':current_user.username,'msg':message})
 
 
 
 @app.route('/chatbox',methods=['POST','GET'])
 @login_required
 def chatbox():
+    # session['chatter'] = current_user.username
+    # print(session)
     return rd("chat.html")
