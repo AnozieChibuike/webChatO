@@ -64,13 +64,11 @@ def message(message):
     p = Msg(body=message,author=u)
     db.session.add(p)
     db.session.commit()
-    # posts = Msg.query.all()
-    # for i in posts:
-    #    socket.emit('mes', {'user': i.author.username, 'msg': i.body})
+    socket.emit('mes', {'user': u.username, 'msg': message})
 
 
 @app.route('/chatbox', methods=['POST', 'GET'])
 @login_required
 def chatbox():
     posts = Msg.query.all()
-    return rd("chat.html",posts)
+    return rd("chat.html",posts=posts)

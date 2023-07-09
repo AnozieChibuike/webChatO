@@ -129,9 +129,11 @@
         {% if posts %}
         {% for p in posts %}
         <div class="message">
-          <span class="username">:</span>
-          <span class="text">Welcome guys!</span>
+          <span class="username">{{ p.author.username }}:</span>
+          <span class="text">{{ p.body }}</span>
         </div>
+        {% endfor %}
+        {% endif %}
         <!-- Add more chat messages dynamically -->
       </div>
 
