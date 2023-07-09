@@ -72,5 +72,5 @@ def message(message):
 @app.route('/chatbox', methods=['POST', 'GET'])
 @login_required
 def chatbox():
-    
-    return rd("chat.html")
+    posts = Msg.query.all()
+    return rd("chat.html",posts)

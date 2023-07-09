@@ -126,6 +126,12 @@
           <span class="username">Sarah220:</span>
           <span class="text">Welcome guys!</span>
         </div>
+        {% if posts %}
+        {% for p in posts %}
+        <div class="message">
+          <span class="username">:</span>
+          <span class="text">Welcome guys!</span>
+        </div>
         <!-- Add more chat messages dynamically -->
       </div>
 
