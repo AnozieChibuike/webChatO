@@ -6,6 +6,7 @@ from app.model import User, Msg
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
+
 def get_admin_info():
     info = User.query.filter_by(username='info').first()
     if info:
@@ -16,6 +17,7 @@ def get_admin_info():
         db.session.commit()
         info = User.query.filter_by(username='info').first()
         return info
+
 
 @app.route('/logout')
 def logout():
@@ -34,31 +36,6 @@ def logout():
 @app.route('/home')
 def home():
     return rd("index.html.jinja")
-
-
-# @socket.on('join')
-# def join(data):
-#     username = data['username']
-#     message = f'{username} joined the chat.'
-#     socket.emit('mes', {'user': 'info', 'msg': message})
-#     info = get_admin_info()
-#     p = Msg(body=message, author=info)
-#     db.session.add(p)
-#     db.session.commit()
-    
-
-
-# @socket.on('disconnect')
-# def leave():
-#     info = get_admin_info()
-#     username = current_user.username
-#     message = f'{username} left the chat.'
-#     p = Msg(body=message, author=info)
-#     db.session.add(p)
-#     db.session.commit()
-#     socket.emit('mes', {'user': 'info', 'msg': message})
-    
-
 
 
 @app.route('/signup', methods=["POST", "GET"])
