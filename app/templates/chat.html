@@ -1,50 +1,202 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WEBCHAT IO - CHAT</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-</head>
-<body>
-    <h1><a href="{{ url_for('index')}}">logout</a></h1>
-    <div id="messages">
-    {% for f in show %}
-    <div>{{ f['messages'] }}</div>
-    {% endfor %}</div>
-    <form id="message-form">
-	<input type="text" hidden value="{{ rt }}" id='useR'/>
-        <input type="text" id="message-input" required placeholder='Input message'/>
-        <button type="submit">Send</button>
-    </form>                   
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      /* Custom CSS styles for the techno-themed chat interface */
+
+      /* Custom CSS styles for the techno-themed chat interface */
+      /* Custom CSS styles for the techno-themed chat interface */
+
+      body {
+        background-color: #181818;
+        margin: 0;
+      }
+
+      #chat-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #181818;
+        color: #fff;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #00baff;
+      }
+
+      .messages {
+        margin-bottom: 20px;
+        overflow-y: auto;
+        max-height: 300px;
+      }
+
+      .message {
+        margin-bottom: 10px;
+      }
+
+      .username {
+        font-weight: bold;
+        color: #00baff;
+      }
+
+      .text {
+        margin-left: 5px;
+      }
+
+      .chat-input {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .chat-input input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #333;
+        color: #fff;
+        border-radius: 4px;
+        border: none;
+      }
+
+      .chat-input #send-btn {
+        margin-left: 10px;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #00baff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .logout-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #00baff;
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        text-align: center;
+      }
+
+      .logout-btn:hover {
+        background-color: #0097d1;
+      }
+
+      .chat-input-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 20px;
+      }
+
+      .chat-input-mobile input[type="text"] {
+        margin-bottom: 10px;
+      }
+
+      .chat-input-mobile #send-btn {
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Agbero Chat Room!</h1>
+    <div id="chat-container">
+      <div class="messages">
+        <div class="message">
+          <span class="username">admin:</span>
+          <span class="text">Please be Nice!</span>
+        </div>
+        <div class="message">
+          <span class="username">Sarah220:</span>
+          <span class="text">Welcome guys!</span>
+        </div>
+        {% if posts %} {% for p in posts %}
+        <div class="message">
+          <span class="username">{{ p.author.username }}:</span>
+          <span class="text">{{ p.body }}</span>
+        </div>
+        {% endfor %} {% endif %}
+        <!-- Add more chat messages dynamically -->
+      </div>
+
+      <div class="chat-input">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Type your message..."
+        />
+        <button type="button" id="send-btn">Send</button>
+      </div>
+
+      <a href="/logout" class="logout-btn">Logout</a>
+    </div>
 
     <script>
-        //var socket = io.connect('192.168.56.1:5000');
-	    var socket = io()
-        function handleMessage(msg) {
-	    var messageContainer = document.createElement('div');
-        messageContainer.innerHTML = msg;
-	    document.getElementById('messages').appendChild(messageContainer);
-            
-        }
+      //var socket = io.connect('192.168.56.1:5000');
 
-        socket.on('message', handleMessage);
+      var socket = io();
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            var input = document.getElementById('message-input');
-	        var useR = document.getElementById('useR').value;
-            var out = input.value;
-	        var message = `${useR} : ${out}`
-            socket.send(message);
-            input.value = '';
-        }
+      function handleMessage(msg) {
+        var messagesDiv = document.querySelector(".messages");
 
-        document.getElementById('message-form').addEventListener('submit', handleFormSubmit);
+        var messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
+
+        var usernameSpan = document.createElement("span");
+        usernameSpan.classList.add("username");
+        usernameSpan.textContent = `${msg.user}:`;
+
+        var textSpan = document.createElement("span");
+        textSpan.classList.add("text");
+        textSpan.textContent = msg.msg;
+
+        messageDiv.appendChild(usernameSpan);
+        messageDiv.appendChild(textSpan);
+
+        messagesDiv.appendChild(messageDiv);
+        console.log(msg);
+      }
+
+      socket.on("mes", handleMessage);
+
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        var input = document.getElementById("message-input");
+        // var useR = {{ current_user.username }}
+        console.log(input);
+        var out = input.value;
+        // var message = `${useR} : ${out}`
+        var message = `${out}`;
+        socket.send(message);
+        input.value = "";
+      }
+      // Emit 'join' event when a user connects
+      socket.on("connect", function () {
+        socket.emit("join", { username: "{{ current_user.username }}" }); // Replace 'username' with the actual username of the user
+      });
+      socket.on("disconnect", function () {
+        socket.emit("leave", { username: "{{ current_user.username }}" }); // Replace 'username' with the actual username of the user
+      });
+
+      document
+        .getElementById("send-btn")
+        .addEventListener("click", handleFormSubmit);
     </script>
-</body>
+  </body>
 </html>
-
-
-
-
-
-

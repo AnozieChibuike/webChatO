@@ -1,33 +1,100 @@
-{% extends "base.html.jinja" %}
-{% block nav %}Login{% endblock nav %}
+{% extends 'base.html.jinja' %}
+
 {% block content %}
-<form method="post" style="border:1px solid #ccc;margin-top: 60px">
-        <div class="'container">
-            <h1 style="text-align: center;">Login</h1>
-            <hr>
-            <label for='username'><b>UserName</b></label>
-            <input type="text" name="username" 
-                placeholder="Enter Username" 
-                value="" required>
+     
+    <style>
+    /* Custom CSS styles for the login page */
+    .login-container {
+        text-align: center;
+        margin-top: 100px;
+    }
+.remember-me {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #666;
+    }
+
+    .remember-me input {
+        margin-right: 10px;
+    }
+
+    .login-container h1 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .login-container form {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .login-container label {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    .login-container input {
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .login-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #FF5A5F;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+
+    .login-btn:hover {
+        background-color: #E5484D;
+    }
+
+    .login-container p {
+        font-size: 16px;
+        color: #666;
+        margin-top: 15px;
+    }
+
+    .login-container p a {
+        color: #FF5A5F;
+        text-decoration: none;
+    }
+</style>
+
+     
+    
+    
+    <div class="login-container">
+        <h1>Login to Your Account</h1>
+        <form action="/login" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
             
-            <label for="psw"><b>Password</b></label>
-            <input type="password" name="pass"
-                placeholder="Input password" required>
-            <p>Our developer will love your <a href="{{ url_for('donate')}}" style="color:dodgerblue">donations</a>.</p>
-            <div class="clearfix">
-                <button type="submit" class="signupbtn">Login</button>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div class="remember-me">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label for="remember-me">Remember Me</label>
             </div>
-        </div>
-    </form>
-    {% with messages = get_flashed_messages() %}
-{% if messages %}
-<script>
-var messages = {{ messages | safe }};
-for (var i=0; i < messages.length; i++) {
-    alert(messages[i])
-}
-</script>
-{% endif %}
-{% endwith %}
-    </p>
-{% endblock content %}
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <p>Don't have an account yet? <a href="/signup">Sign up here</a></p>
+    </div>
+{% endblock %}
+

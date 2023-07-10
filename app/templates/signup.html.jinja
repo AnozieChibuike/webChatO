@@ -1,39 +1,94 @@
-{% extends "base.html.jinja" %}
-{% block nav %}SignUp{% endblock nav %}
+{% extends 'base.html.jinja' %}
+
 {% block content %}
 
-<div class="form-signup">
-    <form method="POST" style="border:1px solid #ccc;margin-top: 60px">
-        <div class="'container">
-            <h1 style="text-align: center;">SignUp</h1>
-            <p>Please fill in this form to create an account</p>
-            <hr>
-            <label for='username'><b>UserName</b></label>
-            <br>
-            <input type="text" name="username" 
-                placeholder="Enter Username" 
-                value="" required>
-            <label for="psw"><b>Password</b></label>
-            <input type="password" name="pass"
-                placeholder="Password 6-20 characters" required>
-            <label for="psw-repeat"><b>Repeat password</b></label>
-            <input type="password" name="pass-repeat"
-                placeholder="Repeat password" required>
-            <p>Our developer will love your <a href="{{ url_for('donate')}}" style="color:dodgerblue">donations</a>.</p>
-            <div class="clearfix">
-                <button type="submit" class="signupbtn">Signup</button>
-            </div>
-        </div>
-    </form>
-</div>
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<script>
-var messages = {{ messages | safe }};
-for (var i=0; i < messages.length; i++) {
-    alert(messages[i])
-}
-</script>
-{% endif %}
-{% endwith %}
-{% endblock content %}
+   <style>
+    /* Custom CSS styles for the signup page */
+    .signup-container {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .signup-container h1 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .signup-container form {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .signup-container label {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    .signup-container input {
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .signup-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #FF5A5F;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+    }
+
+    .signup-btn:hover {
+        background-color: #E5484D;
+    }
+
+    .signup-container p {
+        font-size: 16px;
+        color: #666;
+        margin-top: 15px;
+    }
+
+    .signup-container p a {
+        color: #FF5A5F;
+        text-decoration: none;
+   
+
+
+
+
+</style>
+
+
+
+
+
+    <div class="signup-container">
+        <h1>Create an Account</h1>
+        <form method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="/login">Log in here</a></p>
+    </div>
+{% endblock %}
+
