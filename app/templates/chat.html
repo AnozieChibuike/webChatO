@@ -126,14 +126,12 @@
           <span class="username">Sarah220:</span>
           <span class="text">Welcome guys!</span>
         </div>
-        {% if posts %}
-        {% for p in posts %}
+        {% if posts %} {% for p in posts %}
         <div class="message">
           <span class="username">{{ p.author.username }}:</span>
           <span class="text">{{ p.body }}</span>
         </div>
-        {% endfor %}
-        {% endif %}
+        {% endfor %} {% endif %}
         <!-- Add more chat messages dynamically -->
       </div>
 
@@ -188,6 +186,13 @@
         socket.send(message);
         input.value = "";
       }
+      // Emit 'join' event when a user connects
+      socket.on("connect", function () {
+        socket.emit("join", { username: "{{ current_user.username }}" }); // Replace 'username' with the actual username of the user
+      });
+      socket.on("disconnect", function () {
+        socket.emit("leave", { username: "{{ current_user.username }}" }); // Replace 'username' with the actual username of the user
+      });
 
       document
         .getElementById("send-btn")
