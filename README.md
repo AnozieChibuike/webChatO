@@ -92,12 +92,13 @@
 
 * [![Flask][Flask]][Flask-url]
 * [![socketIO][socket]][socket-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Jinja][Jinja]][Jinja]
+* [![MYSQL][MYSQL]][MYSQL]
+* [![JS][JS]][JS]
+* [![PYTHON][PYTHON]][PYTHON]
+* [![HTML][HTML]][HTML]
+* [![CSS][CSS]][CSS]
+* [![render][render]][render]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -230,15 +231,17 @@ Project Link: [https://github.com/github_username/WebChatO](https://github.com/g
 [Flask-url]: https://flask.palletsprojects.com/en/2.3.x/
 [socket]: https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101
 [socket-url]: https://socket.io/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[Jinja]: https://img.shields.io/badge/Jinja-000000?style=for-the-badge&logo=jinja&logoColor=red
+[Jinja]: https://jinja.palletsprojects.com/en/3.1.x/
+[MYSQL]: https://img.shields.io/badge/Mysql-DD0031?style=for-the-badge&logo=mysql&logoColor=orange
+[MYSQL]: https://angular.io/
+[JS]: https://img.shields.io/badge/Javascript-4A4A55?style=for-the-badge&logo=javascript&logoColor=FF3E00
+[JS]: https://svelte.dev/
+[PYTHON]: https://img.shields.io/badge/Python-FF2D20?style=for-the-badge&logo=python&logoColor=blue
+[PYTHON]: https://laravel.com
+[HTML]: https://img.shields.io/badge/Html5-563D7C?style=for-the-badge&logo=html5&logoColor=white
+[HTML]: https://getbootstrap.com
+[CSS]: https://img.shields.io/badge/Css3-0769AD?style=for-the-badge&logo=css3&logoColor=white
+[CSS]: https://jquery.com 
+[render]: https://img.shields.io/badge/Render-0769AD?style=for-the-badge&logo=render&logoColor=white
+[render]: https://jquery.com 
