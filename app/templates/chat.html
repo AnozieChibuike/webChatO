@@ -120,12 +120,9 @@
       <div class="messages">
         <div class="message">
           <span class="username">admin:</span>
-          <span class="text">Please be Nice!</span>
+          <span class="text">Welcome to the chat room,Please be Nice!</span>
         </div>
-        <div class="message">
-          <span class="username">Sarah220:</span>
-          <span class="text">Welcome guys!</span>
-        </div>
+  
         {% if posts %} {% for p in posts %}
         <div class="message">
           <span class="username">{{ p.author.username }}:</span>
@@ -140,6 +137,7 @@
           type="text"
           id="message-input"
           placeholder="Type your message..."
+          required
         />
         <button type="button" id="send-btn">Send</button>
       </div>
