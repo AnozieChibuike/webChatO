@@ -4,8 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WEBCHAT IO - CHAT</title>
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
       integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
@@ -56,6 +62,7 @@
       }
 
       .chat-input {
+        position: absolute;
         display: flex;
         align-items: center;
         margin-top: 20px;
@@ -81,9 +88,9 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        width:60px;
+        width: 60px;
       }
-      
+
       .logout-btn {
         position: fixed;
         top: 20px;
@@ -119,14 +126,18 @@
     </style>
   </head>
   <body>
-    <h1 class="sm:text-1xl font-bold mr-3 my-8 md:text-2xl font-bold mr-3 my-7 lg:text-3xl my-5">Agbero Chat Room!</h1>
+    <h1
+      class="sm:text-1xl font-bold mr-3 my-8 md:text-2xl font-bold mr-3 my-7 lg:text-3xl my-5"
+    >
+      Agbero Chat Room!
+    </h1>
     <div id="chat-container">
       <div class="messages">
         <div class="message">
           <span class="username">admin:</span>
           <span class="text">Welcome to the chat room,Please be Nice!</span>
         </div>
-  
+
         {% if posts %} {% for p in posts %}
         <div class="message">
           <span class="username">{{ p.author.username }}:</span>
@@ -143,7 +154,9 @@
           placeholder="Type your message..."
           required
         />
-        <button type="button" id="send-btn"><i class="fa fa-paper-plane-o"></i></button>
+        <button type="button" id="send-btn">
+          <i class="fa fa-paper-plane-o"></i>
+        </button>
       </div>
 
       <a href="/logout" class="logout-btn">Logout</a>

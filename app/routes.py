@@ -97,3 +97,12 @@ def message(message):
 def chatbox():
     posts = Msg.query.all()
     return rd("chat.html", posts=posts)
+
+
+# API
+
+@app.route('/api/getusers')
+def getusers()
+    users = User.query.all()
+    for i in users:
+        
