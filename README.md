@@ -75,7 +75,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Capture.png](https://i.postimg.cc/nhRVPgQ4/Capture.png)](https://postimg.cc/NKXwyNDF)
+[![Capture.png](Capture.PNG)](https://postimg.cc/NKXwyNDF)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
