@@ -69,7 +69,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -107,43 +106,44 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+There are no requirements.txt file, so you hard-install...
+* dependencies
   ```sh
-  npm install npm@latest -g
+  pip install flask flask-socketio flask-migrate flask-mysqldb flask-loginpython-dotenv
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Get a free MYSQL database at [https://www.freesqldatabase.com/](https://www.freesqldatabase.com/)
+2. Clone the repo :
    ```sh
    git clone https://github.com/github_username/WebChatO.git
    ```
-3. Install NPM packages
+3. Set Environmental Variables :
    ```sh
-   npm install
+   export dbName=<Database name>
+   export password=<Database password>
+   export username=<Database username>
+   export host=<Database host>
+   export SECRET=<A secret word>
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   Note: Replace each value with your own
+   
+5. Edit the `.flaskenv` to your likening
+
+6. Start the server: 
+   ```sh
+   flask run
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://github.com/AnozieChibuike/webChatO)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -152,12 +152,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] File Sharing
+- [ ] Profile Page
+- [ ] Dynamic Nature
+    - [ ] Create and Join Room
+    - [ ] Video Calls
+    - [ ] Private Dms
 
-See the [open issues](https://github.com/github_username/WebChatO/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/AnozieChibuike/WebChatO/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -180,22 +182,12 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
 Agbero From PhilaDEVia - [@JoelBlvck2](https://twitter.com/JoelBlvck2) - chibuikeanozie0@gmail.com
 
-Project Link: [https://github.com/github_username/WebChatO](https://github.com/github_username/WebChatO)
+Project Link: [https://webchatv1.onrender.com/](https://webchatv1.onrender.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -204,9 +196,8 @@ Project Link: [https://github.com/github_username/WebChatO](https://github.com/g
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Miguel Grinberg](https://blog.miguelgrinberg.com/)
+* [ChatGPT](https://chat.openai.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -233,11 +224,11 @@ Project Link: [https://github.com/github_username/WebChatO](https://github.com/g
 [socket-url]: https://socket.io/
 [Jinja]: https://img.shields.io/badge/Jinja-000000?style=for-the-badge&logo=jinja&logoColor=red
 [Jinja]: https://jinja.palletsprojects.com/en/3.1.x/
-[MYSQL]: https://img.shields.io/badge/Mysql-DD0031?style=for-the-badge&logo=mysql&logoColor=orange
+[MYSQL]: https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white
 [MYSQL]: https://angular.io/
-[JS]: https://img.shields.io/badge/Javascript-4A4A55?style=for-the-badge&logo=javascript&logoColor=FF3E00
+[JS]: https://img.shields.io/badge/JavaScript%20-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=white
 [JS]: https://svelte.dev/
-[PYTHON]: https://img.shields.io/badge/Python-FF2D20?style=for-the-badge&logo=python&logoColor=blue
+[PYTHON]: https://img.shields.io/badge/Python%20-%2314354C.svg?style=for-the-badge&logo=python&logoColor=white
 [PYTHON]: https://laravel.com
 [HTML]: https://img.shields.io/badge/Html5-563D7C?style=for-the-badge&logo=html5&logoColor=white
 [HTML]: https://getbootstrap.com
