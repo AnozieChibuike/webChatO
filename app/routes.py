@@ -101,8 +101,7 @@ def chatbox():
 
 # API
 
-@app.route('/api/getusers')
-def getusers()
-    users = User.query.all()
-    for i in users:
-        
+# @app.route('/api/getusers')
+# def getusers()
+#     users = User.query.all()
+#     for i in users:
