@@ -101,9 +101,17 @@ def chatbox():
 
 # API
 
-@app.route('/api/getusers')
-def getusers():
-    users = User.query.all()
-    list_of_users = [i.username for i in users]
-    data = {'users':list_of_users}
+@app.route('/api/get-user-messages')
+def getUserMessages():
+    id = request.args.get('id')
+    if not id:
+        return jsonify({'message':'Params not found'})
+    user = User.query.get(id)
+    if not user:
+        return jsonify({'message':'Resource not found'})
+    msg = Msg.query.filter_by(user_id=id).all()
+    if not msg:
+        return jsonify({'message':'User has no messages'})
+    list_of_msg = [{'id':i.id,'body':i.body} for i in msg]
+    data = {'user':user.username,'messages':list_of_msg}
     return jsonify(data)
