@@ -1,6 +1,6 @@
 from app import app, db, socket
 from flask_socketio import disconnect
-from flask import request, flash, session, redirect, url_for
+from flask import request, flash, session, redirect, url_for,jsonify
 from flask import render_template as rd
 from app.model import User, Msg
 from flask_login import current_user, login_user, logout_user, login_required
@@ -101,7 +101,9 @@ def chatbox():
 
 # API
 
-# @app.route('/api/getusers')
-# def getusers()
-#     users = User.query.all()
-#     for i in users:
+@app.route('/api/getusers')
+def getusers():
+    users = User.query.all()
+    list_of_users = [i.username for i in users]
+    data = {'users':list_of_users}
+    return jsonify(data)
