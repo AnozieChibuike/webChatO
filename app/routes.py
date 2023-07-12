@@ -105,13 +105,52 @@ def chatbox():
 def getUserMessages():
     id = request.args.get('id')
     if not id:
-        return jsonify({'message':'Params not found'})
+        return jsonify({'message':'Params not found'}),301
     user = User.query.get(id)
     if not user:
-        return jsonify({'message':'Resource not found'})
+        return jsonify({'message':'Resource not found'}),406
     msg = Msg.query.filter_by(user_id=id).all()
     if not msg:
         return jsonify({'message':'User has no messages'})
     list_of_msg = [{'id':i.id,'body':i.body} for i in msg]
     data = {'user':user.username,'messages':list_of_msg}
     return jsonify(data)
+# To get User by id
+@app.route('/api/user')
+def getuser():
+    id = request.args.get('id')
+    if not id:
+        return jsonify({'message':'Params not found'}),301
+    user = User.query.get(id)
+    if not user:
+        return jsonify({'message':'No user found'}), 301
+    list_of_user = {'id':user.id,'username':user.username}
+    data = {'data':list_of_user,'message':'success'}
+    return jsonify(data)
+to get all users no required param
+@app.route('/api/get-all-user')
+def getalluser():
+    user = User.query.all()
+    if not user:
+        return jsonify({'message':'No user found'}), 301
+    list_of_user = [{'id':i.id,'username':i.username} for i in user]
+    data = {'data':list_of_user,'message':'success'}
+    return jsonify(data)
+
+@app.route('/api/get-all-messages')
+def getallmsg():
+    msg = Msg.query.all()
+    if not msg:
+        return jsonify({'message':'No msg found'}), 301
+    list_of_msg = [{'id':i.id,'msg':i.body,'author':i.author.username} for i in msg]
+    data = {'data':list_of_msg,'message':'success'}
+    return jsonify(data)
+
+
+
+
+
+
+
+
+
