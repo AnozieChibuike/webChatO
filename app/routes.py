@@ -104,6 +104,8 @@ def chatbox():
 @app.route('/api/get-user-messages')
 def getUserMessages():
     id = request.args.get('id')
+    if not id:
+        return jsonify({'message':'Params not found'})
     user = User.query.get(id).first()
     if not user:
         return jsonify({'message':'Resource not found'})
