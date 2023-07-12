@@ -106,7 +106,7 @@ def getUserMessages():
     id = request.args.get('id')
     if not id:
         return jsonify({'message':'Params not found'})
-    user = User.query.get(id).first()
+    user = User.query.get(id)
     if not user:
         return jsonify({'message':'Resource not found'})
     msg = Msg.query.filter_by(user_id=id).all()
