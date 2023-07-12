@@ -101,6 +101,7 @@ def chatbox():
 
 # API
 
+# Get messages by user id
 @app.route('/api/get-user-messages')
 def getUserMessages():
     id = request.args.get('id')
@@ -127,7 +128,7 @@ def getuser():
     list_of_user = {'id':user.id,'username':user.username}
     data = {'data':list_of_user,'message':'success'}
     return jsonify(data)
-to get all users no required param
+# to get all users no required param
 @app.route('/api/get-all-user')
 def getalluser():
     user = User.query.all()
