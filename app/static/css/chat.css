@@ -161,41 +161,81 @@ body {
     text-align: right;
 }
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #2671ff;
-    color: white;
-  }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #2671ff;
+        color: white;
+      }
 
-  .header .logout-button {
-    cursor: pointer;
-    margin-left: 10px;
-  }
+      .header .logout-button {
+        cursor: pointer;
+        margin-left: 10px;
+      }
 
-  .dropdown {
-    display: none;
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    background-color: #2671ff;
-    padding: 10px;
-    border-radius: 4px;
-    color: white;
-    z-index: 1;
-  }
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        padding: 10px;
+        background-color: #2671ff;
+        color: white;
+      }
 
-  .dropdown .logout-link {
-    display: block;
-    color: white;
-    margin-bottom: 5px;
-    text-decoration: none;
-  }
+      .hamburger:hover {
+        background-color: #1c5eaf;
+      }
 
-  /* Show the dropdown on mobile phones */
-  @media (max-width: 767px) {
-    .dropdown {
-      display: block;
-    }
-  }
+      .close-button {
+        display: none;
+        cursor: pointer;
+        padding: 10px;
+        background-color: #2671ff;
+        color: white;
+      }
+
+      .close-button:hover {
+        background-color: #1c5eaf;
+      }
+
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        background-color: #2671ff;
+        padding: 10px;
+        border-radius: 4px;
+        color: white;
+        z-index: 1;
+      }
+
+      .dropdown .logout-link {
+        display: block;
+        color: white;
+        margin-bottom: 5px;
+        text-decoration: none;
+      }
+
+      /* Show the hamburger on mobile phones */
+      @media (max-width: 767px) {
+        .header {
+          justify-content: space-between;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .close-button {
+          display: none;
+        }
+
+        .dropdown {
+          display: none;
+        }
+
+        .dropdown.show {
+          display: block;
+        }
+      }
