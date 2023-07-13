@@ -178,9 +178,30 @@
         var isUser = currentUser == username ? true : false;
         appendMessage(username, message, time, isUser);
       });
-      document.querySelector(".logout-button").addEventListener("click", function() {
-        document.querySelector(".dropdown").style.display = "block";
+      //document.querySelector(".logout-button").addEventListener("click", function() {
+        //document.querySelector(".dropdown").style.display = "block";
+    //  });
+
+const hamburger = document.querySelector(".hamburger");
+      const closeButton = document.querySelector(".close-button");
+      const dropdown = document.querySelector(".dropdown");
+
+      hamburger.addEventListener("click", function () {
+        hamburger.style.display = "none";
+        closeButton.style.display = "block";
+        dropdown.classList.add("show");
       });
+
+      closeButton.addEventListener("click", function () {
+        hamburger.style.display = "block";
+        closeButton.style.display = "none";
+        dropdown.classList.remove("show");
+      });
+
+      document.querySelector(".logout-button").addEventListener("click", function () {
+        dropdown.classList.toggle("show");
+      });
+
     </script>
   </body>
 </html>
