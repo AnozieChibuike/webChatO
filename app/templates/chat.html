@@ -28,18 +28,19 @@
   </head>
 
   <body>
-    <header class="flex items-center justify-between p-4 bg-blue-500">
-      <h1 class="text-3xl text-white">WEBCHATio</h1>
-      <button id="hamburger-btn" class="text-white md:hidden">
-        <i class="fas fa-bars"></i>
-      </button>
-    </header>
-
-    <div id="dropdown" class="hidden absolute right-0 mt-2 mr-2 bg-gray-900 text-white rounded-md p-2">
-      <a href="#" class="block py-1 px-2 hover:bg-gray-700">Profile</a>
-      <a href="#" class="block py-1 px-2 hover:bg-gray-700">Settings</a>
-      <a href="/logout" class="block py-1 px-2 hover:bg-gray-700">Logout</a>
-    </div>
+    <header class="header">
+      <h1>WEBCHATIO</h1>
+      <div class="logout-button">Logout</div>
+      <div class="hamburger">
+        <i class="fa fa-bars"></i>
+      </div>
+      <div class="close-button">
+        <i class="fa fa-times"></i>
+      </div>
+      <div class="dropdown">
+        <a class="logout-link" href="/logout">Logout</a>
+      </div>
+      </header>
     <section class="chatbox">
       <section class="chat-window">
         {% for post in posts %}{% if post.author.username ==
@@ -181,14 +182,14 @@
         //document.querySelector(".dropdown").style.display = "block";
     //  });
 
-//const hamburger = document.querySelector(".hamburger");
+      const hamburger = document.querySelector(".hamburger");
       const closeButton = document.querySelector(".close-button");
-      const hamburgerBtn = document.getElementById('hamburger-btn');
-      const dropdown = document.getElementById('dropdown');
+      const dropdown = document.querySelector(".dropdown");
 
-      hamburgerBtn.addEventListener('click', () => {
-        dropdown.classList.toggle('hidden');
-      });
+      hamburger.addEventListener("click", function () {
+        hamburger.style.display = "none";
+        closeButton.style.display = "block";
+        dropdown.classList.add("show");
 
       closeButton.addEventListener("click", function () {
         hamburger.style.display = "block";
