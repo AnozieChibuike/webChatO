@@ -1,154 +1,180 @@
-
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WEBCHAT IO - CHAT</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/chat.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/263db0789a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WEBCHAT IO - CHAT</title>
-  <link rel="stylesheet" href="{{ url_for('static',filename='css/chat.css') }}" />
-  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <script src="https://kit.fontawesome.com/263db0789a.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
-    integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
-    crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <section class="chatbox">
-    <section class="chat-window">
-      {% for post in posts %}{% if post.author.username == current_user.username %}
-      <article class="msg-container msg-self" id="msg-0">
-        <div class="msg-box">
-          <div class="flr">
-            <div class="messages">
-              <p class="msg" id="msg-1">
-                {{ post.body }}
-              </p>
+  <body>
+    <header class="header">
+      <h1>Chat App</h1>
+      <div class="dropdown">
+        <a class="logout-link" href="/logout">Logout</a>
+      </div>
+      <div class="logout-button">Logout</div>
+    </header>
+    <section class="chatbox">
+      <section class="chat-window">
+        {% for post in posts %}{% if post.author.username ==
+        current_user.username %}
+        <article class="msg-container msg-self" id="msg-0">
+          <div class="msg-box">
+            <div class="flr">
+              <div class="messages">
+                <p class="msg" id="msg-1">{{ post.body }}</p>
+              </div>
+              <span class="timestamp"
+                ><span class="username">{{ post.author.username }}</span
+                >&bull;<span class="posttime">{{ post.timestamp}}</span></span
+              >
             </div>
-            <span class="timestamp"><span class="username">{{ post.author.username }}</span>&bull;<span
-                class="posttime">{{ post.timestamp}}</span></span>
+            <img
+              class="user-img"
+              id="user-0"
+              src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro"
+            />
           </div>
-          <img class="user-img" id="user-0"
-            src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
-        </div>
-      </article>
-      {% else %}
-      <article class="msg-container msg-remote" id="msg-0">
-        <div class="msg-box">
-          <img class="user-img" id="user-0"
-            src="//gravatar.com/avatar/002464562345234523523568978962?d=retro" />
-          <div class="flr">
-            <div class="messages">
-              <p class="msg" id="msg-0">
-                {{ post.body }}
-              </p>
+        </article>
+        {% else %}
+        <article class="msg-container msg-remote" id="msg-0">
+          <div class="msg-box">
+            <img
+              class="user-img"
+              id="user-0"
+              src="//gravatar.com/avatar/002464562345234523523568978962?d=retro"
+            />
+            <div class="flr">
+              <div class="messages">
+                <p class="msg" id="msg-0">{{ post.body }}</p>
+              </div>
+              <span class="timestamp"
+                ><span class="username">{{ post.author.username }}</span
+                >&bull;<span class="posttime"> {{ post.timestamp}} </span></span
+              >
             </div>
-            <span class="timestamp"><span class="username">{{ post.author.username }}</span>&bull;<span
-                class="posttime">
-                {{ post.timestamp}}
-              </span></span>
           </div>
-        </div>
-      </article>
-      {% endif %}
-      {% endfor %}
+        </article>
+        {% endif %} {% endfor %}
+      </section>
+      <form class="chat-input" onsubmit="return false;">
+        <input type="text" autocomplete="on" placeholder="Type a message" />
+        <button id="send-btn">
+          <i class="fa fa-paper-plane-o"></i>
+        </button>
+      </form>
     </section>
-    <form class="chat-input" onsubmit="return false;">
-      <input type="text" autocomplete="on" placeholder="Type a message" />
-      <button id="send-btn">
-        <i class="fa fa-paper-plane-o"></i>
-      </button>
-    </form>
-  </section>
-  <script>
-    var socket = io();
+    <script>
+      var socket = io();
 
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      var input = document.querySelector(".chat-input input");
-      var message = input.value.trim();
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        var input = document.querySelector(".chat-input input");
+        var message = input.value.trim();
 
-      if (message !== "") {
-        socket.emit("message", message);
-        input.value = "";
+        if (message !== "") {
+          socket.emit("message", message);
+          input.value = "";
+        }
       }
-    }
-    document.querySelector(".chat-input").addEventListener("submit", handleFormSubmit);
+      document
+        .querySelector(".chat-input")
+        .addEventListener("submit", handleFormSubmit);
 
-    function appendMessage(username, message, time, isSelf) {
-      var chatWindow = document.querySelector(".chat-window");
+      function appendMessage(username, message, time, isSelf) {
+        var chatWindow = document.querySelector(".chat-window");
 
-      var article = document.createElement("article");
-      article.classList.add("msg-container");
-      article.classList.add(isSelf ? "msg-self" : "msg-remote");
+        var article = document.createElement("article");
+        article.classList.add("msg-container");
+        article.classList.add(isSelf ? "msg-self" : "msg-remote");
 
-      var msgBox = document.createElement("div");
-      msgBox.classList.add("msg-box");
+        var msgBox = document.createElement("div");
+        msgBox.classList.add("msg-box");
 
-      var userImg = document.createElement("img");
-      userImg.classList.add("user-img");
-      userImg.src = isSelf ? "//gravatar.com/avatar/56234674574535734573000000000001?d=retro" : "//gravatar.com/avatar/00034587632094500000000000000000?d=retro";
+        var userImg = document.createElement("img");
+        userImg.classList.add("user-img");
+        userImg.src = isSelf
+          ? "//gravatar.com/avatar/56234674574535734573000000000001?d=retro"
+          : "//gravatar.com/avatar/00034587632094500000000000000000?d=retro";
 
-      var contentDiv = document.createElement("div");
-      contentDiv.classList.add("flr");
+        var contentDiv = document.createElement("div");
+        contentDiv.classList.add("flr");
 
-      var messagesDiv = document.createElement("div");
-      messagesDiv.classList.add("messages");
+        var messagesDiv = document.createElement("div");
+        messagesDiv.classList.add("messages");
 
-      var messageParagraph = document.createElement("p");
-      messageParagraph.classList.add("msg");
-      messageParagraph.textContent = message;
+        var messageParagraph = document.createElement("p");
+        messageParagraph.classList.add("msg");
+        messageParagraph.textContent = message;
 
-      messagesDiv.appendChild(messageParagraph);
+        messagesDiv.appendChild(messageParagraph);
 
-      var timestampSpan = document.createElement("span");
-      timestampSpan.classList.add("timestamp");
-      var usernameSpan = document.createElement("span");
-      usernameSpan.classList.add("username");
-      usernameSpan.textContent = username;
-      var bulletSpan = document.createElement("span");
-      bulletSpan.textContent = "•";
-      var posttimeSpan = document.createElement("span");
-      posttimeSpan.classList.add("posttime");
-      posttimeSpan.textContent = time;
+        var timestampSpan = document.createElement("span");
+        timestampSpan.classList.add("timestamp");
+        var usernameSpan = document.createElement("span");
+        usernameSpan.classList.add("username");
+        usernameSpan.textContent = username;
+        var bulletSpan = document.createElement("span");
+        bulletSpan.textContent = "•";
+        var posttimeSpan = document.createElement("span");
+        posttimeSpan.classList.add("posttime");
+        posttimeSpan.textContent = time;
 
-      timestampSpan.appendChild(usernameSpan);
-      timestampSpan.appendChild(bulletSpan);
-      timestampSpan.appendChild(posttimeSpan);
+        timestampSpan.appendChild(usernameSpan);
+        timestampSpan.appendChild(bulletSpan);
+        timestampSpan.appendChild(posttimeSpan);
 
-      contentDiv.appendChild(messagesDiv);
-      contentDiv.appendChild(timestampSpan);
+        contentDiv.appendChild(messagesDiv);
+        contentDiv.appendChild(timestampSpan);
 
-      if (isSelf) {
-        msgBox.appendChild(contentDiv);
-        msgBox.appendChild(userImg);
-      } else {
-        msgBox.appendChild(userImg);
-        msgBox.appendChild(contentDiv);
+        if (isSelf) {
+          msgBox.appendChild(contentDiv);
+          msgBox.appendChild(userImg);
+        } else {
+          msgBox.appendChild(userImg);
+          msgBox.appendChild(contentDiv);
+        }
+
+        article.appendChild(msgBox);
+
+        chatWindow.appendChild(article);
+
+        // Scroll to the latest message
+        chatWindow.scrollTop = chatWindow.scrollHeight;
       }
 
-      article.appendChild(msgBox);
-
-      chatWindow.appendChild(article);
-
-      // Scroll to the latest message
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-
-    socket.on("mes", function (data) {
-      var username = `${data.user}`;
-      var time = data.time;
-      var message = data.msg;
-      var currentUser = "{{ current_user.username }}";
-      var isUser = currentUser == username ? true : false;
-      appendMessage(username, message, time, isUser);
-    });
-  </script>
-</body>
-
+      socket.on("mes", function (data) {
+        var username = `${data.user}`;
+        var time = data.time;
+        var message = data.msg;
+        var currentUser = "{{ current_user.username }}";
+        var isUser = currentUser == username ? true : false;
+        appendMessage(username, message, time, isUser);
+      });
+      document.querySelector(".logout-button").addEventListener("click", function() {
+        document.querySelector(".dropdown").style.display = "block";
+      });
+    </script>
+  </body>
 </html>
-
-
-
