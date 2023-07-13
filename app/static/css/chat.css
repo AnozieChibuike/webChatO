@@ -20,15 +20,28 @@ body {
 	background-color: #4c4c6a;
 	border-radius: 2px;
 }
-.chatbox {
-    width: 300px;
-    height: 400px;
-    max-height: 400px;
+
+  /* Chatbox container */
+  .chatbox {
+    width: auto; /* Set the initial width to 100% */
+    height: auto; /* Set the initial height */
+    max-height: 600px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
-}
+    box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+  }
+
+  /* Responsive adjustments for phones */
+  @media (max-width: 767px) {
+    /* Adjust the width and height for phones */
+    .chatbox {
+      width: auto;
+      height: auto;
+    }
+  }
+
+
 .chat-window {
     flex: auto;
     max-height: calc(100% - 60px);

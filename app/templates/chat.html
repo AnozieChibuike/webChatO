@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -12,8 +13,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
     integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
     crossorigin="anonymous"></script>
+  <style>
+    /* Custom techno theme styles */
+    /* Add your custom techno theme styles here */
 
-    <body class="flex flex-col items-center justify-center w-screen h-screen bg-gray-100 text-gray-800 p-20">
+  </style>
+</head>
+
+<body>
   <section class="chatbox">
     <section class="chat-window">
       {% for post in posts %}{% if post.author.username == current_user.username %}
@@ -25,24 +32,28 @@
                 {{ post.body }}
               </p>
             </div>
-            <span class="timestamp"><span class="username">{{ post.author.username }}</span>&bull;<span class="posttime">{{ post.timestamp}}</span></span>
+            <span class="timestamp"><span class="username">{{ post.author.username }}</span>&bull;<span
+                class="posttime">{{ post.timestamp}}</span></span>
           </div>
-          <img class="user-img" id="user-0" src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
+          <img class="user-img" id="user-0"
+            src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
         </div>
       </article>
       {% else %}
       <article class="msg-container msg-remote" id="msg-0">
         <div class="msg-box">
-          <img class="user-img" id="user-0" src="//gravatar.com/avatar/002464562345234523523568978962?d=retro" />
+          <img class="user-img" id="user-0"
+            src="//gravatar.com/avatar/002464562345234523523568978962?d=retro" />
           <div class="flr">
             <div class="messages">
               <p class="msg" id="msg-0">
-                {{ post.body }} 
+                {{ post.body }}
               </p>
             </div>
-            <span class="timestamp"><span class="username">{{ post.author.username }}</span>&bull;<span class="posttime">
-              {{ post.timestamp}}
-            </span></span>
+            <span class="timestamp"><span class="username">{{ post.author.username }}</span>&bull;<span
+                class="posttime">
+                {{ post.timestamp}}
+              </span></span>
           </div>
         </div>
       </article>
@@ -52,99 +63,101 @@
     <form class="chat-input" onsubmit="return false;">
       <input type="text" autocomplete="on" placeholder="Type a message" />
       <button id="send-btn">
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-          <path fill="rgba(0,0,0,.38)"
-            d="M17,12L12,17V14H8V10H12V7L17,12M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L5,8.09V15.91L12,19.85L19,15.91V8.09L12,4.15Z" />
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17 12L12 17V14H8V10H12V7L17 12ZM21 16.5C21 16.88 20.79 17.21 20.47 17.38L12.57 21.82C12.41 21.94 12.21 22 12 22C11.79 22 11.59 21.94 11.43 21.82L3.53 17.38C3.21 17.21 3 16.88 3 16.5V7.5C3 7.12 3.21 6.79 3.53 6.62L11.43 2.18C11.59 2.06 11.79 2 12 2C12.21 2 12.41 2.06 12.57 2.18L20.47 6.62C20.79 6.79 21 7.12 21 7.5V16.5Z"
+            fill="white" />
         </svg>
       </button>
     </form>
   </section>
-<script>
+  <script>
+    var socket = io();
 
-var socket = io();
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      var input = document.querySelector(".chat-input input");
+      var message = input.value.trim();
 
-function handleFormSubmit(event) {
-  event.preventDefault();
-  var input = document.querySelector(".chat-input input");
-  var message = input.value.trim();
-
-  if (message !== "") {
-    socket.emit("message", message);
-    input.value = "";
-  }
-}
-document.querySelector(".chat-input").addEventListener("submit", handleFormSubmit);
-function appendMessage(username, message, time, isSelf) {
-    var chatWindow = document.querySelector(".chat-window");
-  
-    var article = document.createElement("article");
-    article.classList.add("msg-container");
-    article.classList.add(isSelf ? "msg-self" : "msg-remote");
-  
-    var msgBox = document.createElement("div");
-    msgBox.classList.add("msg-box");
-  
-    var userImg = document.createElement("img");
-    userImg.classList.add("user-img");
-    userImg.src = isSelf
-      ? "//gravatar.com/avatar/56234674574535734573000000000001?d=retro"
-      : "//gravatar.com/avatar/00034587632094500000000000000000?d=retro";
-  
-    var contentDiv = document.createElement("div");
-    contentDiv.classList.add("flr");
-  
-    var messagesDiv = document.createElement("div");
-    messagesDiv.classList.add("messages");
-  
-    var messageParagraph = document.createElement("p");
-    messageParagraph.classList.add("msg");
-    messageParagraph.textContent = message;
-  
-    messagesDiv.appendChild(messageParagraph);
-  
-    var timestampSpan = document.createElement("span");
-    timestampSpan.classList.add("timestamp");
-    var usernameSpan = document.createElement("span");
-    usernameSpan.classList.add("username");
-    usernameSpan.textContent = username;
-    var bulletSpan = document.createElement("span");
-    bulletSpan.textContent = "•";
-    var posttimeSpan = document.createElement("span");
-    posttimeSpan.classList.add("posttime");
-    posttimeSpan.textContent = time;
-  
-    timestampSpan.appendChild(usernameSpan);
-    timestampSpan.appendChild(bulletSpan);
-    timestampSpan.appendChild(posttimeSpan);
-  
-    contentDiv.appendChild(messagesDiv);
-    contentDiv.appendChild(timestampSpan);
-  
-    if (isSelf) {
-      msgBox.appendChild(contentDiv);
-      msgBox.appendChild(userImg);
-    } else {
-      msgBox.appendChild(userImg);
-      msgBox.appendChild(contentDiv);
+      if (message !== "") {
+        socket.emit("message", message);
+        input.value = "";
+      }
     }
-  
-    article.appendChild(msgBox);
-  
-    chatWindow.appendChild(article);
-  
-    // Scroll to the latest message
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  }
-  
-socket.on("mes", function (data) {
-  var username = `${data.user}`; 
-  var time = data.time;
-  var message = data.msg 
-  currentUser = `{{ current_user.username}}`
-  isUser = currentUser == username ? true : false;
-    appendMessage(username, message, time, isUser);
-});
-</script>
+    document.querySelector(".chat-input").addEventListener("submit", handleFormSubmit);
+
+    function appendMessage(username, message, time, isSelf) {
+      var chatWindow = document.querySelector(".chat-window");
+
+      var article = document.createElement("article");
+      article.classList.add("msg-container");
+      article.classList.add(isSelf ? "msg-self" : "msg-remote");
+
+      var msgBox = document.createElement("div");
+      msgBox.classList.add("msg-box");
+
+      var userImg = document.createElement("img");
+      userImg.classList.add("user-img");
+      userImg.src = isSelf ? "//gravatar.com/avatar/56234674574535734573000000000001?d=retro" : "//gravatar.com/avatar/00034587632094500000000000000000?d=retro";
+
+      var contentDiv = document.createElement("div");
+      contentDiv.classList.add("flr");
+
+      var messagesDiv = document.createElement("div");
+      messagesDiv.classList.add("messages");
+
+      var messageParagraph = document.createElement("p");
+      messageParagraph.classList.add("msg");
+      messageParagraph.textContent = message;
+
+      messagesDiv.appendChild(messageParagraph);
+
+      var timestampSpan = document.createElement("span");
+      timestampSpan.classList.add("timestamp");
+      var usernameSpan = document.createElement("span");
+      usernameSpan.classList.add("username");
+      usernameSpan.textContent = username;
+      var bulletSpan = document.createElement("span");
+      bulletSpan.textContent = "•";
+      var posttimeSpan = document.createElement("span");
+      posttimeSpan.classList.add("posttime");
+      posttimeSpan.textContent = time;
+
+      timestampSpan.appendChild(usernameSpan);
+      timestampSpan.appendChild(bulletSpan);
+      timestampSpan.appendChild(posttimeSpan);
+
+      contentDiv.appendChild(messagesDiv);
+      contentDiv.appendChild(timestampSpan);
+
+      if (isSelf) {
+        msgBox.appendChild(contentDiv);
+        msgBox.appendChild(userImg);
+      } else {
+        msgBox.appendChild(userImg);
+        msgBox.appendChild(contentDiv);
+      }
+
+      article.appendChild(msgBox);
+
+      chatWindow.appendChild(article);
+
+      // Scroll to the latest message
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    socket.on("mes", function (data) {
+      var username = `${data.user}`;
+      var time = data.time;
+      var message = data.msg;
+      var currentUser = "{{ current_user.username }}";
+      var isUser = currentUser == username ? true : false;
+      appendMessage(username, message, time, isUser);
+    });
+  </script>
 </body>
 
 </html>
+
+
+
