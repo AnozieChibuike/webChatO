@@ -161,83 +161,93 @@ body {
     text-align: right;
 }
 .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        background-color: #2671ff;
-        color: white;
-      }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #2671ff;
+  color: white;
+}
 
-      .header .logout-button {
-        cursor: pointer;
-        margin-left: 10px;
-      }
+.header h1 {
+  margin: 0;
+}
 
-      .hamburger {
-        display: none;
-        cursor: pointer;
-        padding: 10px;
-        background-color: #2671ff;
-        color: white;
-      }
+.header .logout-button {
+  cursor: pointer;
+  margin-left: 10px;
+}
 
-      .hamburger:hover {
-        background-color: #1c5eaf;
-      }
+.hamburger {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #2671ff;
+  color: white;
+}
 
-      .close-button {
-        display: none;
-        cursor: pointer;
-        padding: 10px;
-        background-color: #2671ff;
-        color: white;
-      }
+.hamburger:hover {
+  background-color: #1c5eaf;
+}
 
-      .close-button:hover {
-        background-color: #1c5eaf;
-      }
+.close-button {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #2671ff;
+  color: white;
+}
 
-      .dropdown {
-        display: none;
-        position: absolute;
-        top: 50px;
-        right: 10px;
-        background-color: #2671ff;
-        padding: 10px;
-        border-radius: 4px;
-        color: white;
-        z-index: 1;
-      }
+.close-button:hover {
+  background-color: #1c5eaf;
+}
 
-      .dropdown .logout-link {
-        display: block;
-        color: white;
-        margin-bottom: 5px;
-        text-decoration: none;
-      }
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background-color: #2671ff;
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+  z-index: 1;
+}
 
-      /* Show the hamburger on mobile phones */
-      @media (max-width: 767px) {
-        .header {
-          justify-content: space-between;
-        }
-        .logout-button {
-            display: none;
-            }
-        .hamburger {
-          display: block;
-        }
+.dropdown .logout-link {
+  display: block;
+  color: white;
+  margin-bottom: 5px;
+  text-decoration: none;
+}
 
-        .close-button {
-          display: none;
-        }
+.dropdown.show {
+  display: none; /* Hide initially */
+  background-color: #333; /* Set the background color for the dropdown */
+}
 
-        .dropdown {
-          display: none;
-        }
+@media (max-width: 767px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-        .dropdown.show {
-          display: block;
-        }
-      }
+  .hamburger {
+    display: block;
+  }
+
+  .close-button {
+    display: none;
+  }
+
+  .dropdown {
+    position: static;
+    top: initial;
+    right: initial;
+    margin-top: 10px;
+  }
+
+  .dropdown.show {
+    display: block; /* Show the dropdown on mobile */
+  }
+}
