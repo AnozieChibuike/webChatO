@@ -13,7 +13,7 @@
     integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
     crossorigin="anonymous"></script>
 
-<body class="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10">
+    <body class="flex flex-col items-center justify-center w-screen h-screen bg-gray-100 text-gray-800 p-20">
   <section class="chatbox">
     <section class="chat-window">
       {% for post in posts %}{% if post.author.username == current_user.username %}
