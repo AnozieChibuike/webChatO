@@ -162,7 +162,10 @@ body {
 }
 .header {
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        margin-left: 0px;
+        margin-right: 0px;
         padding: 10px;
         background-color: #2671ff;
         color: white;
