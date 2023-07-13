@@ -5,6 +5,7 @@ from flask import render_template as rd
 from app.model import User, Msg
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+from datetime import datetime
 
 
 def get_admin_info():
@@ -89,7 +90,8 @@ def message(message):
     p = Msg(body=message, author=u)
     db.session.add(p)
     db.session.commit()
-    socket.emit('mes', {'user': u.username, 'msg': message})
+    time = datetime.now().strftime('%Y-%m-%d %H:%M')
+    socket.emit('mes', {'user': u.username, 'msg': message,'time':time})
 
 
 @app.route('/chatbox', methods=['POST', 'GET'])

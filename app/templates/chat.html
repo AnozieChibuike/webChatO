@@ -1,217 +1,150 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WEBCHAT IO - CHAT</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
-      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
-      crossorigin="anonymous"
-    ></script>
-    <style>
-      /* Custom CSS styles for the techno-themed chat interface */
 
-      /* Custom CSS styles for the techno-themed chat interface */
-      /* Custom CSS styles for the techno-themed chat interface */
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WEBCHAT IO - CHAT</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/chat.css') }}" />
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://kit.fontawesome.com/263db0789a.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+    integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+    crossorigin="anonymous"></script>
 
-      body {
-        background-color: #181818;
-        margin: 0;
-      }
-
-      #chat-container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #181818;
-        color: #fff;
-      }
-
-      h1 {
-        text-align: center !important;
-        margin-bottom: 20px;
-        color: #00baff;
-      }
-
-      .messages {
-        margin-bottom: 20px;
-        overflow-y: auto;
-        max-height: 300px;
-      }
-
-      .message {
-        margin-bottom: 10px;
-      }
-
-      .username {
-        font-weight: bold;
-        color: #00baff;
-      }
-
-      .text {
-        margin-left: 5px;
-      }
-
-      .chat-input {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        margin-top: 20px;
-        outline: none;
-      }
-
-      .chat-input input[type="text"] {
-        flex: 1;
-        padding: 10px;
-        font-size: 16px;
-        background-color: #333;
-        color: #fff;
-        border-radius: 4px;
-        border: none;
-      }
-
-      .chat-input #send-btn {
-        margin-left: 10px;
-        padding: 10px;
-        font-size: 16px;
-        background-color: #00baff;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 60px;
-      }
-
-      .logout-btn {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 10px 20px;
-        background-color: #00baff;
-        color: #fff;
-        font-size: 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-        text-align: center;
-      }
-
-      .logout-btn:hover {
-        background-color: #0097d1;
-      }
-
-      .chat-input-mobile {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        margin-top: 20px;
-      }
-
-      .chat-input-mobile input[type="text"] {
-        margin-bottom: 10px;
-      }
-
-      .chat-input-mobile #send-btn {
-        margin-left: auto;
-      }
-    </style>
-  </head>
-  <body>
-    <h1
-      class="sm:text-1xl font-bold mr-3 my-8 md:text-2xl font-bold mr-3 my-7 lg:text-3xl my-5"
-    >
-      Agbero Chat Room!
-    </h1>
-    <div id="chat-container">
-      <div class="messages">
-        <div class="message">
-          <span class="username">admin:</span>
-          <span class="text">Welcome to the chat room,Please be Nice!</span>
+<body class="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10">
+  <section class="chatbox">
+    <section class="chat-window">
+      {% for post in posts %}{% if post.author.username == current_user.username %}
+      <article class="msg-container msg-self" id="msg-0">
+        <div class="msg-box">
+          <div class="flr">
+            <div class="messages">
+              <p class="msg" id="msg-1">
+                {{ post.body }}
+              </p>
+            </div>
+            <span class="timestamp"><span class="username">{{ post.author.username }}</span>&bull;<span class="posttime">{{ post.timestamp}}</span></span>
+          </div>
+          <img class="user-img" id="user-0" src="//gravatar.com/avatar/56234674574535734573000000000001?d=retro" />
         </div>
-
-        {% if posts %} {% for p in posts %}
-        <div class="message">
-          <span class="username">{{ p.author.username }}:</span>
-          <span class="text">{{ p.body }}</span>
+      </article>
+      {% else %}
+      <article class="msg-container msg-remote" id="msg-0">
+        <div class="msg-box">
+          <img class="user-img" id="user-0" src="//gravatar.com/avatar/002464562345234523523568978962?d=retro" />
+          <div class="flr">
+            <div class="messages">
+              <p class="msg" id="msg-0">
+                {{ post.body }} 
+              </p>
+            </div>
+            <span class="timestamp"><span class="username">{{ post.author.username }}</span>&bull;<span class="posttime">
+              {{ post.timestamp}}
+            </span></span>
+          </div>
         </div>
-        {% endfor %} {% endif %}
-        <!-- Add more chat messages dynamically -->
-      </div>
+      </article>
+      {% endif %}
+      {% endfor %}
+    </section>
+    <form class="chat-input" onsubmit="return false;">
+      <input type="text" autocomplete="on" placeholder="Type a message" />
+      <button id="send-btn">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="rgba(0,0,0,.38)"
+            d="M17,12L12,17V14H8V10H12V7L17,12M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5M12,4.15L5,8.09V15.91L12,19.85L19,15.91V8.09L12,4.15Z" />
+        </svg>
+      </button>
+    </form>
+  </section>
+<script>
 
-      <div class="chat-input">
-        <input
-          type="text"
-          id="message-input"
-          placeholder="Type your message..."
-          required!
-        />
-        <button type="button" id="send-btn">
-          <i class="fa fa-paper-plane-o"></i>
-        </button>
-      </div>
+var socket = io();
 
-      <a href="/logout" class="logout-btn">Logout</a>
-    </div>
+function handleFormSubmit(event) {
+  event.preventDefault();
+  var input = document.querySelector(".chat-input input");
+  var message = input.value.trim();
 
-    <script>
-      //var socket = io.connect('192.168.56.1:5000');
+  if (message !== "") {
+    socket.emit("message", message);
+    input.value = "";
+  }
+}
+document.querySelector(".chat-input").addEventListener("submit", handleFormSubmit);
+function appendMessage(username, message, time, isSelf) {
+    var chatWindow = document.querySelector(".chat-window");
+  
+    var article = document.createElement("article");
+    article.classList.add("msg-container");
+    article.classList.add(isSelf ? "msg-self" : "msg-remote");
+  
+    var msgBox = document.createElement("div");
+    msgBox.classList.add("msg-box");
+  
+    var userImg = document.createElement("img");
+    userImg.classList.add("user-img");
+    userImg.src = isSelf
+      ? "//gravatar.com/avatar/56234674574535734573000000000001?d=retro"
+      : "//gravatar.com/avatar/00034587632094500000000000000000?d=retro";
+  
+    var contentDiv = document.createElement("div");
+    contentDiv.classList.add("flr");
+  
+    var messagesDiv = document.createElement("div");
+    messagesDiv.classList.add("messages");
+  
+    var messageParagraph = document.createElement("p");
+    messageParagraph.classList.add("msg");
+    messageParagraph.textContent = message;
+  
+    messagesDiv.appendChild(messageParagraph);
+  
+    var timestampSpan = document.createElement("span");
+    timestampSpan.classList.add("timestamp");
+    var usernameSpan = document.createElement("span");
+    usernameSpan.classList.add("username");
+    usernameSpan.textContent = username;
+    var bulletSpan = document.createElement("span");
+    bulletSpan.textContent = "•";
+    var posttimeSpan = document.createElement("span");
+    posttimeSpan.classList.add("posttime");
+    posttimeSpan.textContent = time;
+  
+    timestampSpan.appendChild(usernameSpan);
+    timestampSpan.appendChild(bulletSpan);
+    timestampSpan.appendChild(posttimeSpan);
+  
+    contentDiv.appendChild(messagesDiv);
+    contentDiv.appendChild(timestampSpan);
+  
+    if (isSelf) {
+      msgBox.appendChild(contentDiv);
+      msgBox.appendChild(userImg);
+    } else {
+      msgBox.appendChild(userImg);
+      msgBox.appendChild(contentDiv);
+    }
+  
+    article.appendChild(msgBox);
+  
+    chatWindow.appendChild(article);
+  
+    // Scroll to the latest message
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+  
+socket.on("mes", function (data) {
+  var username = `${data.user}`; 
+  var time = data.time;
+  var message = data.msg 
+  currentUser = `{{ current_user.username}}`
+  isUser = currentUser == username ? true : false;
+    appendMessage(username, message, time, isUser);
+});
+</script>
+</body>
 
-      var socket = io();
-
-      function handleMessage(msg) {
-        var messagesDiv = document.querySelector(".messages");
-
-        var messageDiv = document.createElement("div");
-        messageDiv.classList.add("message");
-
-        var usernameSpan = document.createElement("span");
-        usernameSpan.classList.add("username");
-        usernameSpan.textContent = `${msg.user}:`;
-
-        var textSpan = document.createElement("span");
-        textSpan.classList.add("text");
-        textSpan.textContent = msg.msg;
-
-        messageDiv.appendChild(usernameSpan);
-        messageDiv.appendChild(textSpan);
-
-        messagesDiv.appendChild(messageDiv);
-        console.log(msg);
-      }
-
-      socket.on("mes", handleMessage);
-
-      function handleFormSubmit(event) {
-        event.preventDefault();
-        var input = document.getElementById("message-input");
-        // var useR = {{ current_user.username }}
-        console.log(input);
-        var out = input.value;
-        // var message = `${useR} : ${out}`
-        var message = `${out}`;
-        socket.send(message);
-        input.value = "";
-      }
-      // Emit 'join' event when a user connects
-      socket.on("connect", function () {
-        socket.emit("join", { username: "{{ current_user.username }}" }); // Replace 'username' with the actual username of the user
-      });
-      socket.on("disconnect", function () {
-        socket.emit("leave", { username: "{{ current_user.username }}" }); // Replace 'username' with the actual username of the user
-      });
-
-      document
-        .getElementById("send-btn")
-        .addEventListener("click", handleFormSubmit);
-    </script>
-  </body>
 </html>
