@@ -2,6 +2,7 @@
 echo "Installation of required packages..."
 
 pip install -r requirements.txt
+pip install --upgrade -r requirements.txt
 
 migrations_path="migrations/"
 
@@ -21,11 +22,18 @@ if [ -d $migrations_path ]; then
             echo "Database set up successful"
         fi
     elif [ $decide == "no" ]; then
-        echo "Exiting..."
-        exit 0
-    else 
-        echo "Invalid input. Please enter 'yes' or 'no'."
-    fi
+        read -p "Start Server on development? (yes/no): " decide
+        if [ $decide == "yes" ]; then
+            python3 -m flask run
+        elif [ $decide == "no" ]; then
+            echo "Exiting..."
+            exit 0
+        else 
+            echo "Invalid input. Please enter 'yes' or 'no'."
+        fi
+            else 
+                echo "Invalid input. Please enter 'yes' or 'no'."
+            fi
 else
     echo "Migrations does not exist, creating new one"
     python3 -m flask db init
