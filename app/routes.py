@@ -4,7 +4,8 @@ from flask import request, flash, session, redirect, url_for,jsonify
 from flask import render_template as rd
 from app.model import User, Msg
 from flask_login import current_user, login_user, logout_user, login_required
-from werkzeug.urls import url_parse
+from urllib.parse import urlsplit
+
 from datetime import datetime
 
 
@@ -77,7 +78,7 @@ def login():
         p = Msg(body=message, author=info)
         db.session.add(p)
         db.session.commit()
-        if not next_page or url_parse(next_page).netloc != '':
+        if not next_page or urlsplit(next_page).netloc != '':
             next_page = url_for('chatbox')
         return redirect(next_page)
     return rd("login.html.jinja")
